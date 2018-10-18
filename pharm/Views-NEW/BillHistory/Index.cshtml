@@ -1,0 +1,98 @@
+﻿@model IEnumerable<pharm.Models.Bill_Information>
+
+@{
+    ViewBag.Title = "Details";
+    if (Session["Usertype"] != null)
+    {
+        if (Session["Usertype"].ToString() == "Admin")
+        {
+            Layout = "~/Views/Shared/_Layout.cshtml";
+        }
+        else
+        {
+            Layout = "~/Views/Shared/_LayoutStaff.cshtml";
+        }
+    }
+    else
+    {
+        Response.Write("<script>alert('You dont have permission to access this page') ; window.location.href='/Login/Login'</script>");
+    }
+}
+
+<h2>&nbspList of Sales</h2>
+
+<hr width="99%">
+
+<p>
+    @using (@Html.BeginForm("Index", "BillHistory", FormMethod.Get))
+    {
+        <b>&nbsp&nbspSearch By Invoice Number:</b>
+
+        @Html.TextBox("search", null, new { @style = " height:22px; width:200px;margin: 0px 5px 0px 10px" })    <input type="submit" value="Search" style=" height:29px; width:100px " />
+    }
+</p>
+
+
+<table id="datatable" class="table table-condensed table-striped table-bordered table-hover display compact">
+    <tr>
+        <th>
+            Invoice Number
+        </th>
+        <th>
+            Total Amount
+        </th>
+        <th>
+            Discount(%)
+        </th>
+        <th>
+            Discount Amount
+        </th>
+        <th>
+            Total Payable
+        </th>
+        <th>
+            Paid
+        </th>
+        <th>
+            Returned
+        </th>
+        <th>
+            Purchase Date
+        </th>
+        <th>Action</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Invoice_No)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Total_Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Discount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Discount_Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Total_Payable)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Paid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Returned)
+            </td>
+            <td>
+                @Convert.ToString(string.Format("{0:dd-MM-yyyy}", item.Date))
+             
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.Invoice_No }, new { @class = "btn btn-info btn-md glyphicon glyphicon-info-sign" })
+             </td>
+        </tr>
+    }
+</table>
+

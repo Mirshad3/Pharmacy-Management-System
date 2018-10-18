@@ -1,0 +1,932 @@
+﻿@model pharm.Models.Batch
+@{
+    ViewBag.Title = "New Purchase Entry";
+
+}
+@*<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>*@
+<!-- iCheck -->
+<link href="~/Adminlte/dist/css/skins/skin-red.css" rel="stylesheet" />
+<link href="~/Adminlte/plugins/iCheck/minimal/minimal.css" rel="stylesheet" />
+@*<link href="~/Scripts/AdminLTE/plugins/iCheck/square/red.css" rel="stylesheet" />
+    <link href="~/Scripts/AdminLTE/plugins/iCheck/minimal/minimal.css" rel="stylesheet" />
+    <script src="~/Scripts/AdminLTE/plugins/iCheck/icheck.min.js"></script>*@
+<script src="~/Adminlte/plugins/iCheck/icheck.min.js"></script>
+<!--*********** modal for suppliers ********** -->
+@*<div id="modal_supplier" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <form id="FormAddSupplier">
+                    @Html.AntiForgeryToken()
+                    name : <input type="text" name="Name" /><br />
+                    address:<input type="text" name="Address" /><br />
+                    Contact: <input type="text" name="Contact" /><br />
+                    Description: <input type="text" name="Description" /><br />
+                    <button id="addSupplier">Add</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        $('#renderSupplierForm')
+        .html("Loading...")
+        .load('@Url.Action("Create", "Supplier")');
+
+        $('#addSupplier').on('click', function () {
+            $.post('/Supplier/Create', $('#FormAddSupplier').serialize(), function (data) {
+                $('#modal_supplier').modal('toggle');
+                if (data == 'duplicate') {
+
+                    alert("Duplicate data!");
+                }
+                else {
+                    populateSupplier();
+                    alert("Success");
+                }
+
+            }, "Json");
+            return false;
+        });
+    </script>*@
+<!--*********** modal for suppliers **********-->
+
+
+<div class=" box  box-primary box-body">
+    <div class="row ">
+        <div class="col-md-4">
+            <div class="row">
+                <div class="col-md-10">
+                    Supplier<br />
+                    <select id="SelectSupplier" class="form-control "></select>
+                    <span class="error"> *Please select a supplier</span>
+                </div>
+                <div class=" pull-left">
+                    <br />
+                    <a href="@Url.Action("Create", "Supplier")" class="glyphicon glyphicon-plus">
+                      
+                  </a>
+                 
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            PurchaseID<br />
+                      <div>
+                          @Html.TextBox("PurchaseID", DateTime.Now.ToString("yyMMddHHmmss"), new { id = "purchaseID", @class = "form-control", @readonly = "readonly" })
+                      </div>
+            @*<input type="text" id="PurchaseID" class="form-control" />
+            <span class="error"> Required field !</span>*@
+        </div>
+        <div class="col-md-4">
+            Date<br />
+            <input type="text" id="purchaseDate" class="form-control datepicker checkDateNoGraterThanToday" />
+            <span class="error"> *Entry date is required </span>
+        </div>
+    </div>
+    <hr />
+    @****************************@
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="row">
+                <div class="col-sm-4">Item</div>
+                <div class="col-sm-8"><select id="SelectMedicine" class="form-control"></select><span class="error"> *Please select a Item</span></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">Batch</div>
+                <div class="col-sm-8">
+                    <div>
+                        @Html.TextBox("PurchaseID", (int)ViewBag.batchid, new { id = "batchID", @class = "form-control"@*, @onchange = "BatchIDAvailability()"*@ })
+                    </div>
+                    @*<input type="text" id="batchID" onchange="BatchIDAvailability()" class="form-control" />*@
+                    <span class="error"> *Batch ID is required</span>
+                    @*@{<span class="batchIDExist"> *Batch ID already exists</span>}*@
+
+                </div>
+                <br />
+                      </div>
+                <div class="row">
+                    <div class="col-sm-4">Qty</div>
+                    <div class="col-sm-8"><input type="number" id="quantity" class="form-control NumbersOnly CheckFirstCharIsZero" /><span class="error">*Quantity is required</span></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">Cost Price</div>
+                    <div class="col-sm-8">
+                        <input type="text" id="costPrice" class="form-control NumbersAndDecimal" />  <span class="error">*Cost Price is required</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">Selling Price</div>
+                    <div class="col-sm-8">
+                        <input type="text" id="sellPrice" class="form-control NumbersAndDecimal" /> <span class="error"> *Sell Price is required</span>@*<span class="compare"> *Sell Price can not be less than Cost Price</span>*@
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-4">Expiry</div>
+                    <div class="col-sm-8"><input type="text" id="expireDate" class="form-control datepicker checkDateNoLessThanToday" /><span class="error"> *Expire date is required</span></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-8"><button type="button" id="btnAdd" class="btn btn-primary">Add to list</button></div>
+                </div>
+            </div>
+        <div class="col-sm-8">
+            <div style=" background-color:#34495e; color:white; padding:10px">Purchase Items</div>
+            @********table here***********@
+            <div id="orderItems" class="tablecontainer" style="height:260px; overflow-y:scroll; border:1px solid #BFAEAE">
+            </div>
+            <div>
+                <br />
+                <button style="padding: 5px 30px 5px 30px" type="button" class="btn btn-primary pull-right" id="btnNext" data-toggle="modal" data-target="#myModal">
+                    Next <span class="glyphicon glyphicon-triangle-right"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Button trigger modal -->
+<!-- Modal for payment details -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" ng-app>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div style="background-color:#c0392b; color:white;" class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Payment Status</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped">
+                    <tr>
+                        <td>Amount</td>
+                        <td><input type="number" readonly @*ng-model="a"*@ id="amount" class="form-control" /><span class="error"> required</span></td>
+                    </tr>
+                    <tr>
+                        <td>Discount(%)</td>
+                        <td><input type="number" @*ng-model="d"*@ id="discount" class="form-control NumbersAndDecimal" /> <span class="error"> Invalid</span></td>
+                    </tr>
+                    <tr>
+                        <td>Discount Amount</td>
+                        <td><input type="number" @*ng-model="t"*@ id="discountAmount" class="form-control NumbersAndDecimal" readonly/><span class="error"> Invalid</span></td>
+                    </tr>
+                    <tr>
+                        <td>GrandTotal</td>
+                        @*<td><input type="text" value="{{(a-d)+t}}" class="form-control" id="GrandTotal" readonly /><span class="error"> Invalid</span></td>*@
+                        <td><input type="text" @*ng-bind="(a-d)+t"*@ class="form-control" id="grandTotal" readonly /><span class="error"> Invalid</span></td>
+                    </tr>
+                    <tr>
+                        <td>Remarks(Notes)</td>
+                        <td><textarea style="width:100%" id="description" class="textOnly"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td>Payment</td>
+                        <td>
+                            <label style="margin-left:5px;"><input type="radio" value="Paid" name="payment" />&nbsp; Paid</label>
+                            <label style="margin-left:5px;"><input type="radio" value="Credit" name="payment" checked />&nbsp; Credit</label>
+
+                        </td>
+                        @*<td><label style="margin-left:5px;"><input type="checkbox" id="Payment" />Full Payment</label></td>*@
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer" style="margin-top:-30px">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <input type="submit" class=" btn btn-primary" id="btnSubmit" value="Submit" />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--********** JavaScripts **********-->
+@*<script>
+        function populateSupplier() {
+            $.get('/NewPurchase/getSupplier', {}, function (data) {
+                $('#SelectSupplier').empty();
+                $('#SelectSupplier').append($("<option value='0'>--Select Supplier--</option>"));
+                $.each(data, function (key, value) {
+                    $('#SelectSupplier').append($("<option></option>").val(value.ID).html(value.Supplier_Name));
+                });
+            }, 'json');
+
+        }
+
+        //Compare Selling price and cost price ...
+
+        $('#SP').on('blur', function () {
+            var cp = Number($('#CP').val());
+            var sp = Number($('#SP').val());
+
+            if (sp <= cp) {
+                alert('Selling Price cannot be lesser or equal to Cost Price');
+                $('#SP').val('');
+            }
+        });
+
+
+        //check date
+
+
+        $(document).on('ready', function () {
+
+            //for calculating amount automatically
+            $('#btnNext').on('click', function () {
+                var subTotal = 0;
+                var total = 0;
+                $('#Amount').val('');
+                $('#Discount').val('');
+                $('#Tax').val('');
+                $('#GrandTotal').val('');
+
+                $('#mytable tr').each(function () {
+                    var qty = $.trim($(this).find(".tdQty").html());
+                    var cp = $.trim($(this).find(".tdCp").html());
+                    total = Number(qty) * Number(cp);
+                    subTotal += total;
+                });
+
+                $('#Amount').val(subTotal);
+                $('#GrandTotal').val(subTotal);
+            });
+
+            //for auto calculate grandtotal with discount
+            $('#Discount, #Tax').keyup(function () {
+                var amount = Number($('#Amount').val());
+                var discount = Number($('#Discount').val());
+                var tax = Number($('#Tax').val());
+
+                if (amount == null && discount == null) {
+                    $('#GrandTotal').val(amount);
+                }
+
+                var grandTotal = (amount - discount + tax).toFixed(2);
+                $('#GrandTotal').val(grandTotal);
+
+            });
+
+            //for icheckbox
+            $('.x').iCheck({
+                checkboxClass: 'icheckbox_minimal',
+                radioClass: 'iradio_minimal',
+                increaseArea: '20%' // optional
+            });
+
+
+            //populating supplier dropdown
+            populateSupplier();
+
+
+
+
+
+
+            //populating Items dropdown
+            $.get('/NewPurchase/getMedicine', {}, function (data) {
+                $('#selectItem').empty();
+                $('#selectItem').append($("<option value='0'>--Select Items--</option>"));
+                $.each(data, function (key, value) {
+                    $('#selectItem').append($('<option></option>').val(value.ID).html(value.Medicine_Name));
+                });
+            }, 'json');
+
+            //datepicker
+            $(function () {
+                $(".datepicker").datepicker({
+                    format: 'yyyy-mm-dd'
+                });
+            });
+        });
+
+        var purchaseItems = [];
+        $('#btnAdd').on('click', function () {
+
+            //jQuery Validations
+            var isValidation = true;
+            if ($('#SelectSupplier').val() == "0") {
+                isValidation = false;
+                $('#SelectSupplier').siblings('span.error').css('visibility', 'visible');
+            }
+            else {
+                $('#SelectSupplier').siblings('span.error').css('visibility', 'hidden');
+            }
+
+            if ($('#PurchaseID').val().trim() == '') {
+                isValidation = false;
+                $('#PurchaseID').siblings('span.error').css('visibility', 'visible');
+            }
+            else {
+                $('#PurchaseID').siblings('span.error').css('visibility', 'hidden');
+            }
+
+            if ($('#InvocingDate').val() == '') {
+                isValidation = false;
+                $('#InvocingDate').siblings('span.error').css('visibility', 'visible');
+            }
+            else {
+                $('#InvocingDate').siblings('span.error').css('visibility', 'hidden');
+            }
+
+            if ($('#selectItem').val() == "0") {
+                isValidation = false;
+                $('#selectItem').siblings('span.error').css('visibility', 'visible');
+            }
+            else {
+                $('#selectItem').siblings('span.error').css('visibility', 'hidden');
+            }
+
+            if ($('#Qty').val() == '') {
+                isValidation = false;
+                $('#Qty').siblings('span.error').css('visibility', 'visible');
+            }
+            else {
+                $('#Qty').siblings('span.error').css('visibility', 'hidden');
+            }
+
+            if ($('#Batch').val() == "") {
+                isValidation = false;
+                $('#Batch').siblings('span.error').css('visibility', 'visible');
+            }
+            else {
+                $('#Batch').siblings('span.error').css('visibility', 'hidden');
+            }
+
+            if ($('#CP').val() == '' || isNaN($('#CP').val().trim())) {
+                isValidation = false;
+                $('#CP').siblings('span.error').css('visibility', 'visible');
+            }
+            else {
+                $('#CP').siblings('span.error').css('visibility', 'hidden');
+            }
+
+            if ($('#SP').val() == '' || isNaN($('#SP').val().trim())) {
+                isValidation = false;
+                $('#SP').siblings('span.error').css('visibility', 'visible');
+            }
+            else {
+                $('#SP').siblings('span.error').css('visibility', 'hidden');
+            }
+
+            if ($('#Expiry').val() == '') {
+                isValidation = false;
+                $('#Expiry').siblings('span.error').css('visibility', 'visible');
+            }
+            else {
+                $('#Expiry').siblings('span.error').css('visibility', 'hidden');
+            }
+
+            if (isValidation) {
+                purchaseItems.push({
+                    ItemID: $('#selectItem').val(),
+                    ItemName: $('#selectItem option:selected').text(),
+                    Batch: $('#Batch').val(),
+                    Qty: $('#Qty').val(),
+                    CostPrice: $('#CP').val(),
+                    SellingPrice: $('#SP').val(),
+                    Expiry: $('#Expiry').val(),
+                    PurchaseID: $('#PurchaseID').val() + ' / ' + $('#SelectSupplier').val(),
+                    BonusIncluded: 0
+                });
+
+                $('#selectItem').val('0').focus();
+                $('#Batch, #Qty, #CP, #SP, #Expiry').val('');
+            }
+            GeneratedItemsTable();
+        });
+
+        $('#btnSubmit').on('click', function () {
+            var isAllValid = true;
+
+            if (purchaseItems.length == 0) {
+                isAllValid = false;
+                alert('Please Add items to purchase!');
+            }
+
+            if ($('#SelectSupplier').val() == "0") {
+                isAllValid = false;
+                $('#SelectSupplier').siblings('span.error').css('visibility', 'visible');
+            }
+            else {
+                $('#SelectSupplier').siblings('span.error').css('visibility', 'hidden');
+            }
+
+            if ($('#PurchaseID').val().trim() == '') {
+                isAllValid = false;
+                $('#PurchaseID').siblings('span.error').css('visibility', 'visible');
+            }
+            else {
+                $('#PurchaseID').siblings('span.error').css('visibility', 'hidden');
+            }
+
+            if ($('#InvocingDate').val() == '') {
+                isAllValid = false;
+                $('#InvocingDate').siblings('span.error').css('visibility', 'visible');
+            }
+            else {
+                $('#InvocingDate').siblings('span.error').css('visibility', 'hidden');
+            }
+            if ($('#Amount').val() == '' || isNaN($('#Amount').val())) {
+                isAllValid = false;
+                $('#Amount').siblings('span.error').css('visibility', 'visible');
+            }
+            else {
+                $('#Amount').siblings('span.error').css('visibility', 'hidden');
+            }
+
+            if (isNaN($('#Discount').val())) {
+                $('#Discount').siblings('span.error').css('visibility', 'visible');
+            }
+            if (isNaN($('#Tax').val())) {
+                $('#Tax').siblings('span.error').css('visibility', 'visible');
+            }
+
+            if (isAllValid) {
+                var data = {
+                    ID: $.trim($('#PurchaseID').val() + '--' + $('#SelectSupplier').val()),
+                    Date: $('#InvocingDate').val().trim(),
+                    SupplierID: $('#SelectSupplier').val(),
+                    Amount: $('#Amount').val(),
+                    Discount: $('#Discount').val(),
+                    Tax: $('#Tax').val(),
+                    GrandTotal: $('#GrandTotal').val(),
+                    IsPaid: $('#Payment').is(":checked") ? 1 : 0,
+                    Description: $('#Description').val(),
+                    PurchaseItems: purchaseItems
+                };
+                $(this).val('Please wait...');
+
+
+                //post data to server
+                $.ajax({
+                    url: '/NewPurchase/SavePurchase',
+                    type: "POST",
+                    data: JSON.stringify(data),
+                    dataType: "JSON",
+                    contentType: "application/json",
+                    success: function (d) {
+                        //check is successfully save to database
+                        if (d.status == true) {
+                            //will send status from server side
+                            alert('Successfully done.');
+                            location.reload(true);
+                            //clear form
+                            purchaseItems = [];
+                            $('#PurchaseID').val('');
+                            $('#InvocingDate').val('');
+                            $('#SelectSupplier').val('0');
+
+                        }
+                        else {
+                            alert('Failed');
+                        }
+                        $('#submit').val('Save');
+                    },
+                    error: function () {
+                        alert('Error. Please try again.');
+                        $('#btnSubmit').val('Save');
+                    }
+                });
+            }
+        });
+
+        function GeneratedItemsTable() {
+            if (purchaseItems.length > 0) {
+                var $table = $('<table id="mytable" class="table table-striped table-hover"/>');
+                $table.append('<thead><tr style="background-color:rgb(201, 211, 218);"><th>Item</th><th>Batch</th><th>Qty</th><th>CP</th><th>SP</th><th>Expiry</th><th>Delete</th></tr></thead>');
+                var $tbody = $('<tbody/>');
+
+                // var $table = $('.tableList');
+                // var $tbody = $('<tbody/>');
+
+                $.each(purchaseItems, function (i, val) {
+                    var $row = $('<tr/>');
+                    //$row.append($('<td/>').html(val.ItemID));
+                    $row.append($('<td/>').html(val.ItemName));
+                    $row.append($('<td/>').html(val.Batch));
+                    $row.append($('<td class="tdQty"/>').html(val.Qty));
+                    $row.append($('<td class="tdCp"/>').html(val.CostPrice));
+                    $row.append($('<td/>').html(val.SellingPrice));
+                    $row.append($('<td/>').html(val.Expiry));
+                    $row.append($('<td/>').html('<a href=# onclick="removeItem(this)" ><span class="glyphicon glyphicon-trash"></span></a>'));
+                    $tbody.append($row);
+                });
+                $table.append($tbody);
+                $('#orderItems').html($table);
+            }
+            else {
+                alert("List is empty !");
+            }
+        }
+
+        //removes record on clicking remove icon and associated array
+        function removeItem(obj) {
+            var $index = $(obj).parent().parent()[0].sectionRowIndex;
+            alert($index);
+            purchaseItems.splice($index, 1);
+            $(obj).parent().parent().remove();
+            GeneratedItemsTable();
+        }
+    </script>*@
+
+
+<script>
+
+    //////$(document).ready(function () {
+    //////    $("#btnView").click(function () {
+    //////        $("#viewitem").show();
+    //////        $("#additem").hide();
+    //////        $("#priceitem").hide();
+    //////    });
+    //////    $("#btnNext").click(function () {
+    //////        $("#viewitem").hide();
+    //////        $("#additem").hide();
+    //////        $("#priceitem").show();
+    //////    });
+    //////    $("#btnback").click(function () {
+    //////        $("#viewitem").hide();
+    //////        $("#additem").show();
+    //////        $("#priceitem").hide();
+    //////    });
+    //////    $("#btnback2").click(function () {
+    //////        $("#viewitem").hide();
+    //////        $("#additem").show();
+    //////        $("#priceitem").hide();
+    //////    });
+
+    //////});
+    //Checking if Batch ID already exist or not
+    //////////function BatchIDAvailability() {
+
+    //////////    var data = {
+    //////////        batchID: $("#batchID").val()
+    //////////    };
+
+    //////////    data = JSON.stringify(data);
+
+    //////////    $.ajax({
+    //////////        url: '/NewPurchase/CheckBatchID',
+    //////////        type: "POST",
+    //////////        data: data,
+    //////////        dataType: "JSON",
+    //////////        contentType: "application/json",
+    //////////        success: function (d) {
+    //////////            if (d.status == true) {
+    //////////                $('#batchID').siblings('span.batchIDExist').css('visibility', 'visible');
+    //////////            }
+    //////////            else if (d.status == false) {
+    //////////                $('#batchID').siblings('span.batchIDExist').css('visibility', 'hidden');
+    //////////            }
+    //////////        },
+    //////////        error: function () {
+    //////////            alert('Error. Please try again.');
+    //////////        }
+    //////////    });
+    //////////}
+
+
+
+    //Getting Supplier List from Database through controller using JsonResult
+    function populateSupplier() {
+        $.get('/NewPurchase/getSupplier', {}, function (data) {
+            $('#SelectSupplier').empty();
+            $('#SelectSupplier').append($("<option value='0'>Select Supplier</option>"));
+            $.each(data, function (key, value) {
+                $('#SelectSupplier').append($("<option></option>").val(value.ID).html(value.Supplier_Name));
+            });
+        }, 'json');
+    }
+
+    //Comparing Selling Price and Cost Price
+    $('#sellPrice').on('blur', function () {
+        var cp = Number($('#costPrice').val());
+        var sp = Number($('#sellPrice').val());
+
+        if (sp <= cp) {
+            $('#sellPrice').siblings('span.compare').css('visibility', 'visible');
+            $('#sellPrice').val('');
+        }
+        else {
+            $('#sellPrice').siblings('span.error').css('visibility', 'hidden');
+        }
+
+    });
+
+    $(document).on('ready', function () {
+
+        //For calculating Amount and Grand Total Automatically
+        $('#btnNext').on('click', function () {
+            var subTotal = 0;
+            var total = 0;
+            $('#amount').val('');
+            $('#discount').val('');
+            $('#grandTotal').val('');
+
+            $('#mytable tr').each(function () {
+                var qty = $.trim($(this).find(".tdQty").html());
+                var cp = $.trim($(this).find(".tdCp").html());
+                total = Number(qty) * Number(cp);
+                subTotal += total;
+            });
+
+            $('#amount').val(subTotal);
+            $('#grandTotal').val(subTotal);
+        });
+
+        //For calculating  Grand Total after the Discount Percentage
+        $('#discount').keyup(function () {
+            var amount = Number($('#amount').val());
+            var discount = Number($('#discount').val());
+
+            if (amount == null && discount == null) {
+                $('#grandTotal').val(amount);
+            }
+
+            var discountAmount = (amount * discount) / 100;
+            var grandTotal = (amount - discountAmount).toFixed(2);
+            $('#discountAmount').val(discountAmount);
+            $('#grandTotal').val(grandTotal);
+
+        });
+
+        //Calling populateSupplier Function to fill the dropdownlist with supplier name using JsonResult
+        populateSupplier();
+
+        //Getting Medicine List from Database through controller using JsonResult
+        $.get('/NewPurchase/getMedicine', {}, function (data) {
+            $('#SelectMedicine').empty();
+            $('#SelectMedicine').append($("<option value='0'>Select Items</option>"))
+            $.each(data, function (key, value) {
+                $('#SelectMedicine').append($('<option></option>').val(value.ID).html(value.Medicine_Name));
+            });
+        }, 'json');
+        $(function () {
+            $(".datepicker").datepicker({
+                format: 'yyyy-mm-dd'
+            });
+        });
+    });
+
+
+    //Adding Medicines into the table
+    var purchaseItems = [];
+    $('#btnAdd').on('click', function () {
+
+        //jQuery Validations
+        var isValidation = true;
+        if ($('#SelectSupplier').val() == "0") {
+            isValidation = false;
+            $('#SelectSupplier').siblings('span.error').css('visibility', 'visible');
+        }
+        else {
+            $('#SelectSupplier').siblings('span.error').css('visibility', 'hidden');
+        }
+
+        if ($('#purchaseDate').val() == '') {
+            isValidation = false;
+            $('#purchaseDate').siblings('span.error').css('visibility', 'visible');
+        }
+        else {
+            $('#purchaseDate').siblings('span.error').css('visibility', 'hidden');
+        }
+
+        if ($('#SelectMedicine').val() == "0") {
+            isValidation = false;
+            $('#SelectMedicine').siblings('span.error').css('visibility', 'visible');
+        }
+        else {
+            $('#SelectMedicine').siblings('span.error').css('visibility', 'hidden');
+        }
+
+        if ($('#batchID').val() == "") {
+            isValidation = false;
+            $('#batchID').siblings('span.error').css('visibility', 'visible');
+        }
+        else {
+            $('#batchID').siblings('span.error').css('visibility', 'hidden');
+        }
+
+        if ($('#quantity').val() == '') {
+            isValidation = false;
+            $('#quantity').siblings('span.error').css('visibility', 'visible');
+        }
+        else {
+            $('#quantity').siblings('span.error').css('visibility', 'hidden');
+        }
+
+        if ($('#costPrice').val() == '' || isNaN($('#costPrice').val().trim())) {
+            isValidation = false;
+            $('#costPrice').siblings('span.error').css('visibility', 'visible');
+        }
+        else {
+            $('#costPrice').siblings('span.error').css('visibility', 'hidden');
+        }
+
+        if ($('#sellPrice').val() == '' || isNaN($('#sellPrice').val().trim())) {
+            isValidation = false;
+            $('#sellPrice').siblings('span.error').css('visibility', 'visible');
+        }
+        else {
+            $('#sellPrice').siblings('span.error').css('visibility', 'hidden');
+        }
+
+        if ($('#productionDate').val() == '') {
+            isValidation = false;
+            $('#productionDate').siblings('span.error').css('visibility', 'visible');
+        }
+        else {
+            $('#productionDate').siblings('span.error').css('visibility', 'hidden');
+        }
+
+        if ($('#expireDate').val() == '') {
+            isValidation = false;
+            $('#expireDate').siblings('span.error').css('visibility', 'visible');
+        }
+        else {
+            $('#expireDate').siblings('span.error').css('visibility', 'hidden');
+        }
+
+
+        if (isValidation) {
+            purchaseItems.push({
+                Medicine_ID: $('#SelectMedicine').val(),
+                Medicine_Name: $('#SelectMedicine option:selected').text(),
+                Batch_ID: $('#batchID').val(),
+                Quantity: $('#quantity').val(),
+                Cost_Price: $('#costPrice').val(),
+                Sell_Price: $('#sellPrice').val(),
+                Expire_Date: $('#expireDate').val(),
+                Production_Date: $('#productionDate').val(),
+                Purchase_ID: $('#purchaseID').val()
+            });
+
+            $('#SelectMedicine').val('0').focus();
+            $('#batchID, #quantity, #costPrice, #sellPrice, #expireDate,#productionDate').val('');
+        }
+        GeneratedItemsTable();
+    });
+
+
+    $('#btnSubmit').on('click', function () {
+
+        var isAllValid = true;
+
+        if (purchaseItems.length == 0) {
+            isAllValid = false;
+            alert('Please Add items to purchase!');
+        }
+
+        if ($('#SelectSupplier').val() == "0") {
+            isAllValid = false;
+            $('#SelectSupplier').siblings('span.error').css('visibility', 'visible');
+        }
+        else {
+            $('#SelectSupplier').siblings('span.error').css('visibility', 'hidden');
+        }
+
+        if ($('#purchaseDate').val() == '') {
+            isAllValid = false;
+            $('#purchaseDate').siblings('span.error').css('visibility', 'visible');
+        }
+        else {
+            $('#purchaseDate').siblings('span.error').css('visibility', 'hidden');
+        }
+
+        if ($('#amount').val() == '' || isNaN($('#amount').val())) {
+            isAllValid = false;
+            $('#amount').siblings('span.error').css('visibility', 'visible');
+        }
+        else {
+            $('#amount').siblings('span.error').css('visibility', 'hidden');
+        }
+
+        if ($('#discount').val() == '' || isNaN($('#discount').val())) {
+            isAllValid = false;
+            $('#discount').siblings('span.error').css('visibility', 'visible');
+        }
+        else {
+            $('#discount').siblings('span.error').css('visibility', 'hidden');
+        }
+
+        if ($('#description').val() == '') {
+            isAllValid = false;
+            $('#description').siblings('span.error').css('visibility', 'visible');
+        }
+        else {
+            $('#description').siblings('span.error').css('visibility', 'hidden');
+        }
+
+        if (isAllValid) {
+            var data = {
+                Purchase_ID: $("#purchaseID").val(),
+                Supplier_ID: $('#SelectSupplier').val(),
+                Entry_Date: $('#purchaseDate').val(),
+                Amount: $('#amount').val(),
+                Discount: $('#discount').val(),
+                Discount_Amount: $('#discountAmount').val(),
+                Grand_Total: $('#grandTotal').val(),
+                //IsPaid: $('#payment').is(":checked") ? 1 : 0,
+                IsPaid: $("input[name='payment']:checked").val(),
+                Description: $('#description').val(),
+                PurchaseItems: purchaseItems
+            }
+
+            $(this).val('Please wait...');
+
+            $.ajax({
+                url: '/NewPurchase/SavePurchase',
+                type: "POST",
+                data: JSON.stringify(data),
+                dataType: "JSON",
+                contentType: "application/json",
+                success: function (d) {
+                    //check is successfully save to database
+                    if (d.status == true) {
+                        //will send status from server side
+                        alert('Successfully done.');
+                        location.reload(true);
+                        //clear form
+                        purchaseItems = [];
+                        $('#PurchaseID').val('');
+                        $('#InvocingDate').val('');
+                        $('#SelectSupplier').val('0');
+
+                    }
+                    else {
+                        alert('Failed');
+                    }
+                    $('#submit').val('Save');
+                },
+                error: function () {
+                    alert('Error. Please try again.');
+                    $('#btnSubmit').val('Save');
+                }
+            });
+        }
+    });
+
+    //Function for adding medicines into the table
+    function GeneratedItemsTable() {
+        if (purchaseItems.length > 0) {
+            ////var $table = $('<table id="mytable" border="1" cellpadding="10"/>');
+            ////$table.append('<thead><tr"><th>Item</th><th>Batch</th><th>Qty</th><th>CP</th><th>SP</th><th>Production Date</th><th>Expiry Date</th><th>Delete</th></tr></thead>');
+            ////var $tbody = $('<tbody/>');
+            var $table = $('<table id="mytable" class="table table-striped table-hover"/>');
+            $table.append('<thead><tr style="background-color:rgb(201, 211, 218);"><th>Item</th><th>Batch</th><th>Qty</th><th>CP</th><th>SP</th><th>Production Date</th><th>Delete</th></tr></thead>');
+            var $tbody = $('<tbody/>');
+            $.each(purchaseItems, function (i, val) {
+                var $row = $('<tr/>');
+                //$row.append($('<td/>').html(val.Medicine_ID));
+                $row.append($('<td/>').html(val.Medicine_Name));
+                $row.append($('<td/>').html(val.Batch_ID));
+                $row.append($('<td class="tdQty"/>').html(val.Quantity));
+                $row.append($('<td class="tdCp"/>').html(val.Cost_Price));
+                $row.append($('<td/>').html(val.Sell_Price));
+                $row.append($('<td/>').html(val.Expire_Date));
+                //$row.append($('<td/>').html(val.Production_Date));
+                $row.append($('<td/>').html('<a href=# onclick="removeItem(this)" ><span class="glyphicon glyphicon-trash"></span></a>'));
+                $tbody.append($row);
+            });
+            $table.append($tbody);
+            $('#orderItems').html($table);
+        }
+        else {
+            alert("List is empty !");
+        }
+    }
+
+    function removeItem(obj) {
+        var $index = $(obj).parent().parent()[0].sectionRowIndex;
+        purchaseItems.splice($index, 1);
+        $(obj).parent().parent().remove();
+        GeneratedItemsTable();
+    }
+
+</script>
+<style>
+
+    /*Adding some css for looks good*/
+    span.error {
+        display: block;
+        visibility: hidden;
+        color: red;
+        font-size: 90%;
+    }
+    /*
+    .tablecontainer table {
+        width: 100%;
+        border-collapse: collapse;
+        border-top: 1px solid #BFAEAE;
+        border-right: 1px solid #BFAEAE;
+    }
+
+    .tablecontainer th {
+        border-bottom: 2px solid #BFAEAE !important;
+        background-color: #3d566e;
+        color: #ecf0f1;
+    }
+
+    .tablecontainer th, .tablecontainer td {
+        text-align: left;
+        border-left: 1px solid #BFAEAE;
+        padding: 5px;
+        border-bottom: 1px solid #BFAEAE;
+    }*/
+</style>
+

@@ -1,0 +1,247 @@
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\roslyn\csc.exe
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\roslyn\vbc.exe
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\roslyn\VBCSCompiler.exe
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\pharm.dll.config
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\pharm.dll
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\pharm.pdb
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\Antlr3.Runtime.dll
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\EntityFramework.dll
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\EntityFramework.SqlServer.dll
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\Microsoft.Owin.dll
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\Microsoft.Owin.Security.dll
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\Newtonsoft.Json.dll
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\Owin.dll
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\System.Web.Helpers.dll
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\System.Web.Mvc.dll
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\System.Web.Optimization.dll
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\System.Web.Razor.dll
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\System.Web.WebPages.Deployment.dll
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\System.Web.WebPages.dll
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\System.Web.WebPages.Razor.dll
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\WebGrease.dll
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\System.Web.Helpers.xml
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\System.Web.Mvc.xml
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\System.Web.Optimization.xml
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\System.Web.Razor.xml
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\System.Web.WebPages.xml
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\System.Web.WebPages.Deployment.xml
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\System.Web.WebPages.Razor.xml
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\Antlr3.Runtime.pdb
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\Newtonsoft.Json.xml
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\EntityFramework.xml
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\EntityFramework.SqlServer.xml
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\Microsoft.Owin.xml
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\Microsoft.Owin.Security.xml
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\obj\Debug\pharm.csprojResolveAssemblyReference.cache
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\obj\Debug\pharm.dll
+C:\Users\dellpc\documents\visual studio 2015\Projects\pharm\pharm\obj\Debug\pharm.pdb
+C:\Users\USER\source\repos\pharm\pharm\bin\roslyn\csc.exe
+C:\Users\USER\source\repos\pharm\pharm\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\USER\source\repos\pharm\pharm\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\USER\source\repos\pharm\pharm\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\USER\source\repos\pharm\pharm\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\USER\source\repos\pharm\pharm\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\USER\source\repos\pharm\pharm\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\USER\source\repos\pharm\pharm\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\USER\source\repos\pharm\pharm\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\USER\source\repos\pharm\pharm\bin\roslyn\vbc.exe
+C:\Users\USER\source\repos\pharm\pharm\bin\roslyn\VBCSCompiler.exe
+C:\Users\USER\source\repos\pharm\pharm\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\USER\source\repos\pharm\pharm\bin\pharm.dll.config
+C:\Users\USER\source\repos\pharm\pharm\bin\pharm.dll
+C:\Users\USER\source\repos\pharm\pharm\bin\pharm.pdb
+C:\Users\USER\source\repos\pharm\pharm\bin\Antlr3.Runtime.dll
+C:\Users\USER\source\repos\pharm\pharm\bin\EntityFramework.dll
+C:\Users\USER\source\repos\pharm\pharm\bin\EntityFramework.SqlServer.dll
+C:\Users\USER\source\repos\pharm\pharm\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\USER\source\repos\pharm\pharm\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\USER\source\repos\pharm\pharm\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\USER\source\repos\pharm\pharm\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\USER\source\repos\pharm\pharm\bin\Microsoft.Owin.dll
+C:\Users\USER\source\repos\pharm\pharm\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\USER\source\repos\pharm\pharm\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\USER\source\repos\pharm\pharm\bin\Microsoft.Owin.Security.dll
+C:\Users\USER\source\repos\pharm\pharm\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\USER\source\repos\pharm\pharm\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\USER\source\repos\pharm\pharm\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\USER\source\repos\pharm\pharm\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\USER\source\repos\pharm\pharm\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\USER\source\repos\pharm\pharm\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\USER\source\repos\pharm\pharm\bin\Newtonsoft.Json.dll
+C:\Users\USER\source\repos\pharm\pharm\bin\Owin.dll
+C:\Users\USER\source\repos\pharm\pharm\bin\PagedList.dll
+C:\Users\USER\source\repos\pharm\pharm\bin\PagedList.Mvc.dll
+C:\Users\USER\source\repos\pharm\pharm\bin\System.Web.Helpers.dll
+C:\Users\USER\source\repos\pharm\pharm\bin\System.Web.Mvc.dll
+C:\Users\USER\source\repos\pharm\pharm\bin\System.Web.Optimization.dll
+C:\Users\USER\source\repos\pharm\pharm\bin\System.Web.Razor.dll
+C:\Users\USER\source\repos\pharm\pharm\bin\System.Web.WebPages.Deployment.dll
+C:\Users\USER\source\repos\pharm\pharm\bin\System.Web.WebPages.dll
+C:\Users\USER\source\repos\pharm\pharm\bin\System.Web.WebPages.Razor.dll
+C:\Users\USER\source\repos\pharm\pharm\bin\WebGrease.dll
+C:\Users\USER\source\repos\pharm\pharm\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\USER\source\repos\pharm\pharm\bin\PagedList.xml
+C:\Users\USER\source\repos\pharm\pharm\bin\PagedList.Mvc.xml
+C:\Users\USER\source\repos\pharm\pharm\bin\System.Web.Helpers.xml
+C:\Users\USER\source\repos\pharm\pharm\bin\System.Web.Mvc.xml
+C:\Users\USER\source\repos\pharm\pharm\bin\System.Web.Optimization.xml
+C:\Users\USER\source\repos\pharm\pharm\bin\System.Web.Razor.xml
+C:\Users\USER\source\repos\pharm\pharm\bin\System.Web.WebPages.xml
+C:\Users\USER\source\repos\pharm\pharm\bin\System.Web.WebPages.Deployment.xml
+C:\Users\USER\source\repos\pharm\pharm\bin\System.Web.WebPages.Razor.xml
+C:\Users\USER\source\repos\pharm\pharm\bin\Antlr3.Runtime.pdb
+C:\Users\USER\source\repos\pharm\pharm\bin\Newtonsoft.Json.xml
+C:\Users\USER\source\repos\pharm\pharm\bin\EntityFramework.xml
+C:\Users\USER\source\repos\pharm\pharm\bin\EntityFramework.SqlServer.xml
+C:\Users\USER\source\repos\pharm\pharm\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\USER\source\repos\pharm\pharm\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\USER\source\repos\pharm\pharm\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\USER\source\repos\pharm\pharm\bin\Microsoft.Owin.xml
+C:\Users\USER\source\repos\pharm\pharm\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\USER\source\repos\pharm\pharm\bin\Microsoft.Owin.Security.xml
+C:\Users\USER\source\repos\pharm\pharm\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\USER\source\repos\pharm\pharm\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\USER\source\repos\pharm\pharm\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\USER\source\repos\pharm\pharm\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\USER\source\repos\pharm\pharm\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\USER\source\repos\pharm\pharm\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\USER\source\repos\pharm\pharm\obj\Debug\pharm.csproj.CoreCompileInputs.cache
+C:\Users\USER\source\repos\pharm\pharm\obj\Debug\pharm.csproj.CopyComplete
+C:\Users\USER\source\repos\pharm\pharm\obj\Debug\pharm.dll
+C:\Users\USER\source\repos\pharm\pharm\obj\Debug\pharm.pdb
+C:\Users\USER\source\repos\pharm\pharm\obj\Debug\pharm.csprojAssemblyReference.cache
+C:\Users\USER\source\repos\pharm\pharm\bin\System.Linq.Dynamic.dll
+D:\wait pms\pharm\pharm\bin\roslyn\csc.exe
+D:\wait pms\pharm\pharm\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\wait pms\pharm\pharm\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\wait pms\pharm\pharm\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\wait pms\pharm\pharm\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\wait pms\pharm\pharm\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\wait pms\pharm\pharm\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\wait pms\pharm\pharm\bin\roslyn\System.Collections.Immutable.dll
+D:\wait pms\pharm\pharm\bin\roslyn\System.Reflection.Metadata.dll
+D:\wait pms\pharm\pharm\bin\roslyn\vbc.exe
+D:\wait pms\pharm\pharm\bin\roslyn\VBCSCompiler.exe
+D:\wait pms\pharm\pharm\bin\roslyn\VBCSCompiler.exe.config
+D:\wait pms\pharm\pharm\bin\pharm.dll.config
+D:\wait pms\pharm\pharm\bin\pharm.dll
+D:\wait pms\pharm\pharm\bin\pharm.pdb
+D:\wait pms\pharm\pharm\bin\Antlr3.Runtime.dll
+D:\wait pms\pharm\pharm\bin\CrystalDecisions.CrystalReports.Engine.dll
+D:\wait pms\pharm\pharm\bin\CrystalDecisions.ReportSource.dll
+D:\wait pms\pharm\pharm\bin\CrystalDecisions.Shared.dll
+D:\wait pms\pharm\pharm\bin\CrystalDecisions.Web.dll
+D:\wait pms\pharm\pharm\bin\CrystalDecisions.Windows.Forms.dll
+D:\wait pms\pharm\pharm\bin\EntityFramework.dll
+D:\wait pms\pharm\pharm\bin\EntityFramework.SqlServer.dll
+D:\wait pms\pharm\pharm\bin\FlashControlV71.dll
+D:\wait pms\pharm\pharm\bin\Microsoft.AspNet.Identity.Core.dll
+D:\wait pms\pharm\pharm\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\wait pms\pharm\pharm\bin\Microsoft.AspNet.Identity.Owin.dll
+D:\wait pms\pharm\pharm\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\wait pms\pharm\pharm\bin\Microsoft.Owin.dll
+D:\wait pms\pharm\pharm\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\wait pms\pharm\pharm\bin\Microsoft.Owin.Security.Cookies.dll
+D:\wait pms\pharm\pharm\bin\Microsoft.Owin.Security.dll
+D:\wait pms\pharm\pharm\bin\Microsoft.Owin.Security.Facebook.dll
+D:\wait pms\pharm\pharm\bin\Microsoft.Owin.Security.Google.dll
+D:\wait pms\pharm\pharm\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+D:\wait pms\pharm\pharm\bin\Microsoft.Owin.Security.OAuth.dll
+D:\wait pms\pharm\pharm\bin\Microsoft.Owin.Security.Twitter.dll
+D:\wait pms\pharm\pharm\bin\Microsoft.Web.Infrastructure.dll
+D:\wait pms\pharm\pharm\bin\Newtonsoft.Json.dll
+D:\wait pms\pharm\pharm\bin\Owin.dll
+D:\wait pms\pharm\pharm\bin\PagedList.dll
+D:\wait pms\pharm\pharm\bin\PagedList.Mvc.dll
+D:\wait pms\pharm\pharm\bin\System.Linq.Dynamic.dll
+D:\wait pms\pharm\pharm\bin\System.Web.Helpers.dll
+D:\wait pms\pharm\pharm\bin\System.Web.Mvc.dll
+D:\wait pms\pharm\pharm\bin\System.Web.Optimization.dll
+D:\wait pms\pharm\pharm\bin\System.Web.Razor.dll
+D:\wait pms\pharm\pharm\bin\System.Web.WebPages.Deployment.dll
+D:\wait pms\pharm\pharm\bin\System.Web.WebPages.dll
+D:\wait pms\pharm\pharm\bin\System.Web.WebPages.Razor.dll
+D:\wait pms\pharm\pharm\bin\WebGrease.dll
+D:\wait pms\pharm\pharm\bin\ShockwaveFlashObjects.dll
+D:\wait pms\pharm\pharm\bin\CrystalDecisions.ReportAppServer.Controllers.dll
+D:\wait pms\pharm\pharm\bin\CrystalDecisions.ReportAppServer.DataDefModel.dll
+D:\wait pms\pharm\pharm\bin\CrystalDecisions.ReportAppServer.CommonObjectModel.dll
+D:\wait pms\pharm\pharm\bin\CrystalDecisions.ReportAppServer.ClientDoc.dll
+D:\wait pms\pharm\pharm\bin\CrystalDecisions.ReportAppServer.XmlSerialize.dll
+D:\wait pms\pharm\pharm\bin\stdole.dll
+D:\wait pms\pharm\pharm\bin\CrystalDecisions.ReportAppServer.ReportDefModel.dll
+D:\wait pms\pharm\pharm\bin\CrystalDecisions.ReportAppServer.CommLayer.dll
+D:\wait pms\pharm\pharm\bin\CrystalDecisions.ReportAppServer.CubeDefModel.dll
+D:\wait pms\pharm\pharm\bin\CrystalDecisions.ReportAppServer.DataSetConversion.dll
+D:\wait pms\pharm\pharm\bin\CrystalDecisions.ReportAppServer.Prompting.dll
+D:\wait pms\pharm\pharm\bin\CrystalDecisions.ReportAppServer.ObjectFactory.dll
+D:\wait pms\pharm\pharm\bin\CrystalDecisions.ReportAppServer.CommonControls.dll
+D:\wait pms\pharm\pharm\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\wait pms\pharm\pharm\bin\PagedList.xml
+D:\wait pms\pharm\pharm\bin\PagedList.Mvc.xml
+D:\wait pms\pharm\pharm\bin\System.Web.Helpers.xml
+D:\wait pms\pharm\pharm\bin\System.Web.Mvc.xml
+D:\wait pms\pharm\pharm\bin\System.Web.Optimization.xml
+D:\wait pms\pharm\pharm\bin\System.Web.Razor.xml
+D:\wait pms\pharm\pharm\bin\System.Web.WebPages.xml
+D:\wait pms\pharm\pharm\bin\System.Web.WebPages.Deployment.xml
+D:\wait pms\pharm\pharm\bin\System.Web.WebPages.Razor.xml
+D:\wait pms\pharm\pharm\bin\Antlr3.Runtime.pdb
+D:\wait pms\pharm\pharm\bin\Newtonsoft.Json.xml
+D:\wait pms\pharm\pharm\bin\EntityFramework.xml
+D:\wait pms\pharm\pharm\bin\EntityFramework.SqlServer.xml
+D:\wait pms\pharm\pharm\bin\Microsoft.AspNet.Identity.Core.xml
+D:\wait pms\pharm\pharm\bin\Microsoft.AspNet.Identity.Owin.xml
+D:\wait pms\pharm\pharm\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\wait pms\pharm\pharm\bin\Microsoft.Owin.xml
+D:\wait pms\pharm\pharm\bin\Microsoft.Owin.Host.SystemWeb.xml
+D:\wait pms\pharm\pharm\bin\Microsoft.Owin.Security.xml
+D:\wait pms\pharm\pharm\bin\Microsoft.Owin.Security.Facebook.xml
+D:\wait pms\pharm\pharm\bin\Microsoft.Owin.Security.Cookies.xml
+D:\wait pms\pharm\pharm\bin\Microsoft.Owin.Security.OAuth.xml
+D:\wait pms\pharm\pharm\bin\Microsoft.Owin.Security.Google.xml
+D:\wait pms\pharm\pharm\bin\Microsoft.Owin.Security.Twitter.xml
+D:\wait pms\pharm\pharm\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+D:\wait pms\pharm\pharm\obj\Debug\pharm.csprojAssemblyReference.cache
+D:\wait pms\pharm\pharm\obj\Debug\pharm.Report.PurchaseReport.resources
+D:\wait pms\pharm\pharm\obj\Debug\pharm.csproj.GenerateResource.cache
+D:\wait pms\pharm\pharm\obj\Debug\pharm.csproj.CoreCompileInputs.cache
+D:\wait pms\pharm\pharm\obj\Debug\pharm.csproj.CopyComplete
+D:\wait pms\pharm\pharm\obj\Debug\pharm.dll
+D:\wait pms\pharm\pharm\obj\Debug\pharm.pdb
+D:\wait pms\pharm\pharm\bin\Microsoft.ReportViewer.Common.dll
+D:\wait pms\pharm\pharm\bin\Microsoft.ReportViewer.DataVisualization.dll
+D:\wait pms\pharm\pharm\bin\Microsoft.ReportViewer.ProcessingObjectModel.dll
+D:\wait pms\pharm\pharm\bin\Microsoft.ReportViewer.WebForms.dll

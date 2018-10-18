@@ -1,0 +1,142 @@
+﻿@model IEnumerable<pharm.Models.Supplier>
+
+@{
+    ViewBag.Title = "Index";
+    if (Session["Usertype"] != null)
+    {
+        if (Session["Usertype"].ToString() == "Admin")
+        {
+            Layout = "~/Views/Shared/_Layout.cshtml";
+        }
+        else
+        {
+            Layout = "~/Views/Shared/_LayoutStaff.cshtml";
+        }
+    }
+    else
+    {
+        Response.Write("<script>alert('You dont have permission to access this page') ; window.location.href='/Login/Login'</script>");
+    }
+}
+@*<style>
+    tr {
+        border: .4pt
+    }
+
+    table {
+        border: thick solid
+    }
+
+    thead {
+        border: 14pt double(1,12,1)
+    }
+
+    thead {
+        background: cyan
+    }
+
+    tr.odd {
+        background: yellow
+    }
+
+    tr.even {
+        background: cyan
+    }
+</style>*@
+<h2>&nbspList of Suppliers</h2>
+
+<hr width="99%">
+
+<div class="row">
+    <div class="col-md-4">
+        <a href="@Url.Action("Create", "Supplier")" class="btn btn-warning">
+            Create New
+            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+        </a></div>
+        <div class="col-md-offset-4 col-md-4">
+            @using (@Html.BeginForm("Index", "Supplier", FormMethod.Get))
+            {
+                <b>&nbsp&nbspSearch By:</b>
+                @Html.RadioButton("searchBy", "Supplier_Name", true) <text>Supplier Name</text>
+                @Html.RadioButton("searchBy", "Contact") <text>Contact</text>
+                @Html.RadioButton("searchBy", "Email") <text>Email</text><br /><br />
+                @Html.TextBox("Search", null, new { @style = " height:22px; width:200px;margin: 0px 5px 0px 10px" })    <input type="submit" value="Search" style=" height:29px; width:100px " />
+            }
+        </div>
+    </div>
+
+
+<div class="col-lg-12">
+    <h4>List Of Registered Suppliers</h4>
+    @*<div class="col-lg-6" style="padding:0px"><p>* List is By Default in Last In Last Order. </p></div>*@
+    <div class="col-lg-3 pull-right" style="padding:0px">
+        @*@Html.DropDownList("Roles", (IEnumerable<SelectListItem>)ViewBag.roles, "- List By Roles -", new { @class = "form-control text-center" })*@
+    </div>
+    <table align="center" border="1" id="datatable" class="table table-condensed table-striped table-bordered table-hover display compact">
+
+
+        <thead class="cf">
+
+            <tr>
+
+                <td class="pop-10">Supplier Name</td>
+                <td class="pop-10"> Contact</td>
+                <td class="pop-15"> Email</td>
+                <td class="pop-10">Action</td>
+             
+
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Count() == 0)
+            {
+                <tr>
+                    <td colspan="6" align="center">
+                        No records match search criteria
+                    </td>
+                </tr>
+            }
+            else
+            {
+                foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Supplier_Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Contact)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    @*<td align="center">
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-primary btn-large col-md-8 " })
+        </td>
+        <td align="center">
+
+            @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-info btn-large col-md-6 " })
+
+        </td>
+        <td align="center">
+
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "btn btn-danger btn-large col-md-6" })
+
+        </td>*@<td>
+    @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-primary btn-md glyphicon glyphicon-edit" })
+    @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-info btn-md glyphicon glyphicon-info-sign" })
+    @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "btn btn-danger btn-md glyphicon glyphicon-trash", @onclick = "return confirm('Are you sure you want to delete?');" })
+        </td>
+                </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+<br />
+<br />
+<div>
+    @*&nbsp   @Html.ActionLink("Back to Purchase", "Purchase", "Purchase")*@
+</div>
+<br />

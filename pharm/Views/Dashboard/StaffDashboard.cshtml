@@ -1,0 +1,70 @@
+﻿@{
+    ViewBag.Title = "StaffDashboard";
+    if (Session["Usertype"] != null)
+    {
+        if (Session["Usertype"].ToString() == "Staff")
+        {
+            Layout = "~/Views/Shared/_LayoutStaff.cshtml";
+        }
+        else
+        {
+            Response.Write("<script>alert('You dont have permission to access this page') ; window.location.href='/Login/Login'</script>");
+        }
+    }
+    else
+    {
+        Response.Write("<script>alert('You dont have permission to access this page') ; window.location.href='/Login/Login'</script>");
+    }
+}
+<div class="content">
+    <!-- Content Header (Page header) -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                <div class="panel panel-bd">
+                    <div class="panel-body">
+                        <div class="statistic-box">
+                            <h2>
+                                <span class="slight" style="margin-left: 70px;">
+                                    <img src="~/Content/Images/dashboard/pos_invoice.png" height="40" width="40">
+                                </span>
+                            </h2>
+                            <div class="small" style="font-size: 17px;margin-top: 20px;text-align: center;"><a href="/BillHistory/">Sales Entry</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                <div class="panel panel-bd">
+                    <div class="panel-body">
+                        <div class="statistic-box">
+                            <h2><span class="slight" style="margin-left: 70px;"><img src="~/Content/Images/dashboard/invoice.png" height="40" width="40"> </span></h2>
+                            <div class="small" style="font-size: 17px;margin-top: 20px;text-align: center;"><a href="/SalesEntry/">View Sales</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                <div class="panel panel-bd">
+                    <div class="panel-body">
+                        <div class="statistic-box">
+                            <h2><span class="slight" style="margin-left: 70px;"><img src="~/Content/Images/dashboard/product.png" height="40" width="40"> </span></h2>
+                            <div class="small" style="font-size: 17px;margin-top: 20px;text-align: center;"><a href="/Medicine/Create">Expire Medicines</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                <div class="panel panel-bd">
+                    <div class="panel-body">
+                        <div class="statistic-box">
+                            <h2><span class="slight" style="margin-left: 70px;"><img src="~/Content/Images/dashboard/customer.png" height="40" width="40"> </span></h2>
+                            <div class="small" style="font-size: 17px;margin-top: 20px;text-align: center;"><a href="/User/Create">OutStock Medicine</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+</div>

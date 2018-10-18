@@ -1,0 +1,122 @@
+﻿@model IEnumerable<pharm.Models.Expense_Information>
+
+@{
+    ViewBag.Title = "Expense_Information";
+}
+
+ 
+
+<a href="@Url.Action("Create", "Expense_Information")" class="btn btn-warning">
+    Create New
+    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+</a>
+ 
+<br /><br />
+      <div class="box box-primary box-body">
+          <table id="myTable" class="table table-bordered table-hover table-condensed table-striped">
+              <thead>
+                  <tr style="background-color:#3d566e; color:#ecf0f1">
+                      <th>
+                          @Html.DisplayNameFor(model => model.Category)
+                      </th>
+                      <th>
+                          @Html.DisplayNameFor(model => model.Description)
+                      </th>
+                      <th> Action</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  @if (Model.Count() == 0)
+                  {
+                      <tr>
+                          <td colspan="6" align="center">
+                              No records match search criteria
+                          </td>
+                      </tr>
+                  }
+
+                  else
+                  {
+
+                      foreach (var item in Model)
+                      {
+                          <tr>
+                              <td>
+                                  @Html.DisplayFor(modelItem => item.Category)
+                              </td>
+                              <td>
+                                  @Html.DisplayFor(modelItem => item.Description)
+                              </td>
+                              <td>
+                                  @Html.ActionLink("Edit", "Edit", new { id = item.category_Id }, new { @class = "btn btn-primary btn-md glyphicon glyphicon-edit" })
+
+                                  @Html.ActionLink("Delete", "Delete", new { id = item.category_Id }, new { @class = "btn btn-danger btn-md glyphicon glyphicon-trash" })
+
+                              </td>
+                          </tr>
+                      }
+                  }
+              </tbody>
+
+          </table>
+
+</div>
+          @*@foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.category_Id }, new { @class = "btn btn-primary btn-md glyphicon glyphicon-edit" })
+
+                    @Html.ActionLink("Delete", "Delete", new { id = item.category_Id }, new { @class = "btn btn-danger btn-md glyphicon glyphicon-trash", @onclick = "return confirm('Are you sure you want to delete?');" })
+
+                </td>
+            </tr>
+        }*@
+
+
+          @*<table id="myTable" class="table">
+            <tr>
+                <th>
+                    category_Id
+                </th>
+                <th>
+                    Category
+                </th>
+                <th>
+                    Description
+                </th>
+            </tr>
+        </table>*@
+
+          @*@section Scripts {
+            <script>
+            $(document).ready(function () {
+                $("#myTable").DataTable({
+                    "processing": true, // for show progress bar
+                    "serverSide": true, // for process server side
+                    "filter": true, // this is for disable filter (search box)
+                    "orderMulti": false, // for disable multiple column at once
+
+                    "ajax": {
+                        "url":  "Expense_Information/LoadData",
+                        "type": "POST",
+                        "datatype": "json",
+                    } ,
+                    "columns": [
+                            { "data": "category_Id", "name": "category_Id", "autoWidth": true },
+                            { "data": "Category", "name": "Category", "autoWidth": false },
+                            { "data": "Description", "name": "Description", "autoWidth": false },
+
+
+                    ]
+                });
+            });
+            </script>
+        }*@
+

@@ -1,0 +1,62 @@
+﻿@model IEnumerable<pmsnew.Models.Type>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<a href="@Url.Action("Create", "Types")" class="btn btn-warning">
+    Create New
+    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+</a>
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<table align="center" border="1" id="datatable" class="table table-condensed table-striped table-bordered table-hover display compact">
+
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.category_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sub_cat_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.brands)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.brand_description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Manufacturer_Name)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.category_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.sub_cat_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.brands)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.brand_description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Manufacturer_Name)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-primary btn-md" })  
+                @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-info btn-md" })  
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "btn btn-danger btn-md" })
+            </td>
+        </tr>
+    }
+
+</table>

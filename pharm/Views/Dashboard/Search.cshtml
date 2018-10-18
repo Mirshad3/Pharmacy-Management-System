@@ -1,0 +1,71 @@
+﻿@using pharm.Models;
+@model Tuple<pharm.Models.Drug_Generic_name, pharm.Models.Medicine_Information>
+
+<p>
+    @using (Html.BeginForm("Index", "Medicine", FormMethod.Post))
+    {
+       
+            <b>&nbsp&nbspSearch By:</b>
+            @Html.RadioButton("searchBy", "Medicine_Name", true) <text>Medicine</text>
+            @Html.RadioButton("searchBy", "Category") <text>Category</text>
+            @Html.RadioButton("searchBy", "Genric_Name") <text>Generic Name</text>
+            @Html.RadioButton("searchBy", "Manufacturer_Name") <text>Manufacturer</text><br /><br />
+            @Html.TextBox("Search", null, new { @style = " height:22px; width:200px;margin: 0px 5px 0px 10px" }) <input type="submit" value="Search" style=" height:29px; width:100px " />
+        }
+    </p>
+
+<table id="datatable" class="table table-condensed table-striped table-bordered table-hover display compact">
+
+    <tr class="cf">
+        <th>
+            Medicine Name
+        </th>
+        <th>
+            Category
+        </th>
+        <th>
+            Generic Name
+        </th>
+        <th>
+            Manufacturer
+        </th>
+        <th>
+            Action
+        </th>
+    </tr>
+    @if (Model.Item2. == 0)
+    {
+        <tr>
+            <td colspan="6" align="center">
+                No records match search criteria
+            </td>
+        </tr>
+    }
+
+    else
+    {
+        foreach (var item in Model.ReadAdGroups())
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Medicine_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Drug_Generic_name.Genric_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Manufacturer.Manufacturer_Name)
+                </td>
+                <td>
+
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-primary btn-md glyphicon glyphicon-edit" })
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-info btn-md glyphicon glyphicon-info-sign" })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "btn btn-danger btn-md glyphicon glyphicon-trash", @onclick = "return confirm('Are you sure you want to delete?');" })
+                </td>
+            </tr>
+        }
+    }
+</table>

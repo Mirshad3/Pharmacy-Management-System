@@ -1,0 +1,113 @@
+﻿@model pharm.Models.Medicine_Information
+
+@{
+    ViewBag.Title = "Create";
+    ViewBag.SubTitle = "Medicine";
+    if (Session["Usertype"] != null)
+    {
+        if (Session["Usertype"].ToString() == "Admin")
+        {
+            Layout = "~/Views/Shared/_Layout.cshtml";
+        }
+        else
+        {
+            Response.Write("<script>alert('Access Denied') ; window.location.href='/Medicine/Index'</script>");
+        }
+    }
+    else
+    {
+        Response.Write("<script>alert('You dont have permission to access this page') ; window.location.href='/Login/Login'</script>");
+    }
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-horizontal box box-primary">
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+
+            <table align="center" border="1" id="datatable" class="table table-condensed table-striped table-bordered table-hover display compact">
+                <tr align="right">
+                    <td>Medicine Name</td>
+                    <td>
+                        @Html.TextBoxFor(model => model.Medicine_Name, new { @class = "form-control" })
+                    </td>
+                    <td align="left">@Html.ValidationMessageFor(model => model.Medicine_Name, null, new { style = "color:red" })</td>
+                </tr>
+
+                <tr align="right">
+                    <td>Category</td>
+                    @*<td>
+            @Html.DropDownList("CategoryId", new List<SelectListItem>
+            {
+                new SelectListItem{ Text="Tablet", Value ="1"},
+                new SelectListItem{ Text="Capsule", Value = "2" },
+                new SelectListItem{ Text="Syrup", Value = "3" },
+             }, "Select Category", new { style = "width:300px; height:30px; font-size: 16px;" })
+
+        </td>*@
+                    <td>
+                        @Html.DropDownList("CategoryId", null, "Select Category", new { @class = "form-control" })
+                    </td>
+                    <td align="left">@Html.ValidationMessageFor(model => model.Category1.Category1, null, new { style = "color:red" })</td>
+                </tr>
+
+                <tr align="right">
+                    <td>Generic Name</td>
+                    <td>
+                        @Html.DropDownList("Generic_ID", null, "Select Generic Name", new { @class = "form-control" })
+                    </td>
+                    <td align="left">@Html.ValidationMessageFor(model => model.Generic_ID, null, new { style = "color:red" })</td>
+                    <td align="left">@Html.ValidationMessage("Error", new { style = "color:red" })</td>
+                </tr>
+
+                <tr align="right">
+                    <td>Manufacturer Name</td>
+                    <td>
+                        @Html.DropDownList("Manufacturer_ID", null, "Select Manufacturer", new { @class = "form-control" })
+                    </td>
+                    <td align="left">@Html.ValidationMessageFor(model => model.Manufacturer_ID, null, new { style = "color:red" })</td>
+                </tr>
+                <tr align="right">
+                    <td>Item type</td>
+                    @*<td>
+            @Html.DropDownList("UnitId", new List<SelectListItem>
+            {
+                new SelectListItem{ Text="ml", Value ="1"},
+                new SelectListItem{ Text="mg", Value = "2" },
+                new SelectListItem{ Text="pc", Value = "3" },
+             }, "Select Item", new { style = "width:300px; height:30px; font-size: 16px;" })
+
+        </td>*@
+                    <td>
+                        @Html.DropDownList("UnitId", null, "Select Unit", new { @class = "form-control" })
+                    </td>
+                    <td align="left">@Html.ValidationMessageFor(model => model.Manufacturer_ID, null, new { style = "color:red" })</td>
+                </tr>
+
+                <tr>
+                    <td></td>
+
+                    <td>
+                        &nbsp  @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-warning  btn-md" })
+                        &nbsp <input type="submit" value="Create" class="btn btn-success btn-md" />
+                    </td>
+                    <td></td>
+                </tr>
+            </table>
+
+            }
+
+        </div>
+    </div>
+
+</div>
+
+<br />
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

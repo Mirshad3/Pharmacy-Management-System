@@ -1,0 +1,59 @@
+﻿@model IEnumerable<pharm.Models.Sale>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<a href="@Url.Action("Create", "SalesHistory")" class="btn btn-warning">
+    Create New
+    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+</a>
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<table align="center" border="1"  class="table table-condensed table-striped table-bordered table-hover display compact">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cost)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Medicine_Information.Medicine_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Bill_Information.Discount)
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Medicine_Information.Medicine_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bill_Information.Discount)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-primary btn-md glyphicon glyphicon-edit" })
+                @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-info btn-md glyphicon glyphicon-info-sign" })
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "btn btn-danger btn-md glyphicon glyphicon-trash", @onclick = "return confirm('Are you sure you want to delete?');" })
+            </td>
+        </tr>
+    }
+</table>

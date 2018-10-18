@@ -1,0 +1,81 @@
+﻿@model pharm.Models.User_Information
+
+@{
+    ViewBag.Title = "Profile Index";
+    if (Session["Usertype"] != null)
+    {
+        if (Session["Usertype"].ToString() == "Admin")
+        {
+            Layout = "~/Views/Shared/_Layout.cshtml";
+        }
+        else
+        {
+            Layout = "~/Views/Shared/_LayoutStaff.cshtml";
+        }
+    }
+    else
+    {
+        Response.Write("<script>alert('You dont have permission to access this page') ; window.location.href='/Login/Login'</script>");
+    }
+}
+
+
+<div class="box box-primary box-body">
+    <table align="center" border="1" id="datatable" class="table table-condensed table-striped table-bordered table-hover display compact col-md-offset-3 col-md-6">
+        <tr>
+            <td>Name</td>
+            <td> @Html.DisplayFor(model => model.Name)</td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td> @Html.DisplayFor(model => model.Email)</td>
+        </tr>
+        <tr>
+            <td>Gender</td>
+            <td> @Html.DisplayFor(model => model.Gender)</td>
+        </tr>
+        <tr>
+            <td>Date of Birth</td>
+            <td> @Html.DisplayFor(model => model.Date_of_Birth)</td>
+        </tr>
+        <tr>
+            <td>Age</td>
+            <td> @Html.DisplayFor(model => model.Age)</td>
+        </tr>
+        <tr>
+            <td>Address</td>
+            <td> @Html.DisplayFor(model => model.Address)</td>
+        </tr>
+        <tr>
+            <td>Contact</td>
+            <td> @Html.DisplayFor(model => model.Contact)</td>
+        </tr>
+        <tr>
+            <td>Blood Group</td>
+            <td> @Html.DisplayFor(model => model.Blood_Group)</td>
+        </tr>
+        <tr>
+            <td>Marital Status</td>
+            <td> @Html.DisplayFor(model => model.Marital_Status)</td>
+        </tr>
+        <tr>
+            <td>Join Date</td>
+            <td> @Html.DisplayFor(model => model.Join_Date)</td>
+        </tr>
+
+        <tr>
+            <td>Username</td>
+            <td> @Html.DisplayFor(model => model.Username)</td>
+        </tr>
+        <tr>
+            <td>Password</td>
+            <td> @Html.DisplayFor(model => model.User_Access.Password)</td>
+        </tr>
+
+    </table>
+
+    <p class="col-md-offset-8 col-md-4">
+
+        @Html.ActionLink("Edit", "Profile_Edit", new { id = Model.ID, username = Model.Username }, new { @class = "btn btn-primary btn-md glyphicon glyphicon-edit" })
+    </p>
+</div>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="896e7ef7004543de87c7f5a41529acf9" Name="Diagram1">
+        <EntityTypeShape EntityType="pharmModel.Batch" Width="1.5" PointX="5.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="pharmModel.Bill_Information" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="pharmModel.Drug_Generic_name" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="pharmModel.Manufacturer" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="pharmModel.Medicine_Information" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="pharmModel.Purchase" Width="1.5" PointX="3" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="pharmModel.Sale" Width="1.5" PointX="8.25" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="pharmModel.Supplier" Width="1.5" PointX="0.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="pharmModel.sysdiagram" Width="1.5" PointX="10.75" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="pharmModel.User_Access" Width="1.5" PointX="5.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="pharmModel.User_Information" Width="1.5" PointX="8" PointY="8.75" IsExpanded="true" />
+        <AssociationConnector Association="pharmModel.FK__Batch__Medicine___37A5467C" ManuallyRouted="false" />
+        <AssociationConnector Association="pharmModel.FK__Batch__Purchase___38996AB5" ManuallyRouted="false" />
+        <AssociationConnector Association="pharmModel.FK__Sales__Bill_Invo__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="pharmModel.FK__Medicine___Gener__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="pharmModel.FK__Medicine___Manuf__3A81B327" ManuallyRouted="false" />
+        <AssociationConnector Association="pharmModel.FK__Sales__Medicine___3D5E1FD2" ManuallyRouted="false" />
+        <AssociationConnector Association="pharmModel.FK__Purchase__Suppli__3B75D760" ManuallyRouted="false" />
+        <AssociationConnector Association="pharmModel.FK__User_Info__Usern__3E52440B" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="pharmModel.Expense_Information" Width="1.5" PointX="8.375" PointY="1.125" />
+        <EntityTypeShape EntityType="pharmModel.Expens" Width="1.5" PointX="10.625" PointY="0.875" />
+        <AssociationConnector Association="pharmModel.FK_Expenses_Category_Information" />
+        <EntityTypeShape EntityType="pharmModel.Event" Width="1.5" PointX="10.375" PointY="9.75" />
+        <EntityTypeShape EntityType="pharmModel.Category" Width="1.5" PointX="0.5" PointY="7.5" />
+        <EntityTypeShape EntityType="pharmModel.Unit" Width="1.5" PointX="3" PointY="0.75" />
+        <AssociationConnector Association="pharmModel.FK_Medicine_Information_Category2" />
+        <AssociationConnector Association="pharmModel.FK_Medicine_Information_Unit" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

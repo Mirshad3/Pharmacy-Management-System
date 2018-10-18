@@ -1,0 +1,84 @@
+﻿@model pharm.Models.Purchase
+@{
+    ViewBag.Title = "Edit";
+    if (Session["Usertype"] != null)
+    {
+        if (Session["Usertype"].ToString() == "Admin")
+        {
+            Layout = "~/Views/Shared/_Layout.cshtml";
+        }
+        else
+        {
+            Response.Write("<script>alert('You dont have permission to access this page') ; window.location.href='/PurchaseHistory/Index'</script>");
+        }
+    }
+    else
+    {
+        Response.Write("<script>alert('You dont have permission to access this page') ; window.location.href='/Login/Login'</script>");
+    }
+}
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-horizontal box box-primary">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+
+                <table align="center" border="1" id="datatable" class="table table-striped table-bordered  display compact">
+                    <tr align="right">
+                        <td ><div class="col-sm-6 col-form-label">Purchase ID</div></td>
+                        <td>
+                            <div class="col-sm-9">
+                                @Html.TextBoxFor(model => model.Purchase_ID, new { @*style = "width:300px; height:25px; font-size: 16px;",*@@class = "form-control",
+                                @readonly = "readonly"
+                            })
+                                </div>
+                        </td>
+                    </tr>
+                    <tr align="right">
+                        <td><div class="col-sm-6 col-form-label">Discount(%)</div></td>
+                        <td>
+                            <div class="col-sm-9">
+                                @Html.TextBoxFor(model => model.Discount, new { @*style = "width:300px; height:25px; font-size: 16px;",*@@class = "form-control",
+                                @readonly = "readonly"
+                            })
+                            </div>
+                        </td>
+                    </tr>
+                    <tr align="right">
+                        <td><div class="col-sm-6 col-form-label">Description</div></td>
+                        <td>
+                            <div class="col-sm-9">
+                                @Html.TextAreaFor(model => model.Description, new { @*style = "width:300px; height:100px; font-size: 16px;" ,*@@class = "form-control"
+                            })
+                            </div>
+                        </td>
+                    </tr>
+                    <tr align="right">
+                        <td><div class="col-sm-6 col-form-label">IsPaid</div></td>
+                        <td align="left">
+                            <div class="col-sm-9">
+                                @Html.RadioButtonFor(model => model.IsPaid, "Paid") Paid
+                                @Html.RadioButtonFor(model => model.IsPaid, "Credit") Credit
+                                </div>
+                        </td>
+                    </tr>
+                    <tr>
+                            <td></td>
+                            <td>   &nbsp  @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-warning" })
+                        &nbsp  <input type="submit" id="btnSubmit" value="Update" class="btn btn-success " /></td>
+                        </tr>
+                </table>
+            }
+
+         
+        </div>
+    </div>
+
+</div>
+
+
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+        }

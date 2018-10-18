@@ -1,0 +1,57 @@
+﻿@model pharm.Models.Medicine_Information
+@{
+    ViewBag.Title = "Details";
+    ViewBag.SubTitle = "Medicine";
+    if (Session["Usertype"] != null)
+    {
+        if (Session["Usertype"].ToString() == "Admin")
+        {
+            Layout = "~/Views/Shared/_Layout.cshtml";
+        }
+        else
+        {
+            Layout = "~/Views/Shared/_LayoutStaff.cshtml";
+        }
+    }
+    else
+    {
+        Response.Write("<script>alert('You dont have permission to access this page') ; window.location.href='/Login/Login'</script>");
+    }
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-horizontal box box-primary">
+
+            <table align="center" border="1" id="datatable" class="table table-condensed table-striped table-bordered table-hover display compact">
+                <tr>
+                    <td>Medicine Name</td>
+                    <td> @Html.DisplayFor(model => model.Medicine_Name)</td>
+                </tr>
+                <tr>
+                    <td>Category</td>
+                    <td> @Html.DisplayFor(model => model.Category1.Category1)</td>
+                </tr>
+                <tr>
+                    <td>Generic Name</td>
+                    <td> @Html.DisplayFor(model => model.Drug_Generic_name.Genric_Name)</td>
+                </tr>
+                <tr>
+                    <td>Manufacturer</td>
+                    <td> @Html.DisplayFor(model => model.Manufacturer.Manufacturer_Name)</td>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                        &nbsp&nbsp  @Html.ActionLink("Edit", "Edit", new { id = Model.ID }, new { @class = "btn btn-primary btn-md" })
+                        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-warning  btn-md" })
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+
+</div>
+ 

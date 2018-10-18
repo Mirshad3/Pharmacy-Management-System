@@ -1,0 +1,445 @@
+﻿@{
+    ViewBag.Title = "AdminDashboard";
+    if (Session["Usertype"] != null)
+    {
+        if (Session["Usertype"].ToString() == "Admin")
+        {
+            Layout = "~/Views/Shared/_Layout.cshtml";
+
+        }
+        else
+        {
+            Response.Write("<script>alert('You dont have permission to access this page') ; window.location.href='/Login/Login'</script>");
+        }
+    }
+    else
+    {
+        Response.Write("<script>alert('You dont have permission to access this page') ; window.location.href='/Login/Login'</script>");
+    }
+}
+<script src="~/Adminlte/bower_components/chart.js/Chart.min.js"></script>
+@*<script src="~/Scripts/Chart.js"></script>*@
+<div class="content">
+    <!-- Content Header (Page header) -->
+    <!-- Main content -->
+    <section class="content">
+        <!-- Alert Message -->
+        <!-- First Counter -->
+        <!-- Second Counter -->
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                <div class="panel panel-bd">
+                    <div class="panel-body">
+                        <div class="statistic-box">
+                            <h2>
+                                <span class="slight" style="margin-left: 70px;">
+                                    <img src="~/Content/Images/dashboard/pos_invoice.png" height="40" width="40">
+                                </span>
+                            </h2>
+                            <div class="small" style="font-size: 17px;margin-top: 20px;text-align: center;"><a href="/BillHistory/">Create POS Invoice</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                <div class="panel panel-bd">
+                    <div class="panel-body">
+                        <div class="statistic-box">
+                            <h2><span class="slight" style="margin-left: 70px;"><img src="~/Content/Images/dashboard/invoice.png" height="40" width="40"> </span></h2>
+                            <div class="small" style="font-size: 17px;margin-top: 20px;text-align: center;"><a href="/SalesEntry/">Create New Invoice</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                <div class="panel panel-bd">
+                    <div class="panel-body">
+                        <div class="statistic-box">
+                            <h2><span class="slight" style="margin-left: 70px;"><img src="~/Content/Images/dashboard/product.png" height="40" width="40"> </span></h2>
+                            <div class="small" style="font-size: 17px;margin-top: 20px;text-align: center;"><a href="/Medicine/Create">Add Medicine</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                <div class="panel panel-bd">
+                    <div class="panel-body">
+                        <div class="statistic-box">
+                            <h2><span class="slight" style="margin-left: 70px;"><img src="~/Content/Images/dashboard/customer.png" height="40" width="40"> </span></h2>
+                            <div class="small" style="font-size: 17px;margin-top: 20px;text-align: center;"><a href="/User/Create">Add Customer</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Third Counter -->
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                <div class="panel panel-bd">
+                    <div class="panel-body">
+                        <div class="statistic-box">
+                            <h2><span class="slight" style="margin-left: 70px;"><img src="~/Content/Images/dashboard/sale.png" height="40"> </span></h2>
+                            <div class="small" style="font-size: 17px;margin-top: 20px;text-align: center;"><a href="/SalesHistory/">Sales Report</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                <div class="panel panel-bd">
+                    <div class="panel-body">
+                        <div class="statistic-box">
+                            <h2><span class="slight" style="margin-left: 70px;"><img src="~/Content/Images/dashboard/purchase.png" height="40"> </span></h2>
+                            <div class="small" style="font-size: 17px;margin-top: 20px;text-align: center;"><a href="/PurchaseHistory/">Purchase Report</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                <div class="panel panel-bd">
+                    <div class="panel-body">
+                        <div class="statistic-box">
+                            <h2><span class="slight" style="margin-left: 70px;"><img src="~/Content/Images/dashboard/stock.png" height="40"> </span></h2>
+                            <div class="small" style="font-size: 17px;margin-top: 20px;text-align: center;"><a href="/Stock/">Stock Report</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                <div class="panel panel-bd">
+                    <div class="panel-body">
+                        <div class="statistic-box">
+                            <h2><span class="slight" style="margin-left: 70px;"><img src="~/Content/Images/dashboard/account.png" height="40"></span></h2>
+                            <div class="small" style="font-size: 17px;margin-top: 20px;text-align: center;"><a href="/BillHistory/">Account Summary</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-xs-12 col-md-6  ">
+                <div class="box box-success">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Total Bills</h3>
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <canvas id="barChartLoc" class="col-xs-12 col-md-12" style="height:310px"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-xs-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Statistics<i style="font-size:small">-This Month</i></h3>
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                            <!--work progress start-->
+                            <section class="panel">
+
+                                <table class="table table-hover personal-task">
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>
+                                                Number Of Sales
+                                            </td>
+                                            <td>
+                                                <span class="badge bg-important">
+                                                    pharm =kkm
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <div id="work-progress1"><canvas width="47" height="20" style="display: inline-block; width: 47px; height: 20px; vertical-align: top;"></canvas></div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>2</td>
+                                            <td>
+                                                Total Sales
+                                            </td>
+                                            <td>
+                                                <span class="badge bg-important">
+                                                    #                                            -48,412,003.00
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <div id="work-progress1"><canvas width="47" height="20" style="display: inline-block; width: 47px; height: 20px; vertical-align: top;"></canvas></div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>3</td>
+                                            <td>
+                                                Number Of Expenses
+                                            </td>
+                                            <td>
+                                                <span class="badge bg-success">
+                                                    @Session["Expenses_type"].ToString()
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <div id="work-progress2"><canvas width="47" height="22" style=" width: 47px; height: 22px; vertical-align: top;"></canvas></div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>4</td>
+                                            <td>
+                                                Total Expense
+                                            </td>
+                                            <td>
+                                                <span class="badge bg-success">
+                                                 Rs @Session["Expenses"].ToString().00/-
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <div id="work-progress2"><canvas width="47" height="22" style="display: inline-block; width: 47px; height: 22px; vertical-align: top;"></canvas></div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>5</td>
+                                            <td>
+                                                Medicine Expire Alert
+                                            </td>
+                                            <td>
+                                                <span class="badge bg-info">
+                                                    5
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <div id="work-progress3"><canvas width="47" height="22" style="display: inline-block; width: 47px; height: 22px; vertical-align: top;"></canvas></div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>6</td>
+                                            <td>
+                                                In Stock Inventory Quantity
+                                            </td>
+                                            <td>
+                                                <span class="badge bg-info">
+                                                    15249
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <div id="work-progress3"><canvas width="47" height="22" style="display: inline-block; width: 47px; height: 22px; vertical-align: top;"></canvas></div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>7</td>
+                                            <td>
+                                                Medicine out Of Stock
+                                            </td>
+                                            <td>
+                                                <span class="badge bg-warning">
+                                                    0
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <div id="work-progress4"><canvas width="47" height="22" style="display: inline-block; width: 47px; height: 22px; vertical-align: top;"></canvas></div>
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </section>
+                            <!--work progress end-->
+                        </div>
+                </div>
+            </div>
+
+        </div>
+
+    </section> <!-- /.content -->
+</div>
+
+@*<script>
+        var ctx = document.getElementById("myChart");
+
+        var data = {
+            labels: ["January", "February", "March"],
+            datasets: [{
+                label: "Income",
+                backgroundColor: "blue",
+                data: [3, 9, 4 , 5]
+            },
+                {
+                label: "Expense",
+                backgroundColor: "green",
+                data: [7, 2, 13 ,5]
+            }]
+        };
+
+        var myBarChart = new Chart(ctx, {
+            type: 'bar',
+            data: data,
+            options: {
+                barValueSpacing: 20,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            min: 0,
+                        }
+                    }]
+                }
+            }
+        });
+    </script>*@
+@*<script>
+
+        $.ajax({
+            type: "POST",
+            url: "/Dashboard/DataFromDataBase",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (chData) {
+            var aData = chData;
+            var aLabels = aData[0];
+            var aDatasets1 = aData[1];
+            var dataT = {
+                labels: aLabels,
+                datasets: [{
+                    label: "Test Data",
+                    data: aDatasets1,
+                    fill: false,
+                    backgroundColor: ["rgba(54, 162, 235, 0.2)", "rgba(255, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)", "rgba(255, 205, 86, 0.2)", "rgba(75, 192, 192, 0.2)", "rgba(153, 102, 255, 0.2)", "rgba(201, 203, 207, 0.2)"],
+                    borderColor: ["rgb(54, 162, 235)", "rgb(255, 99, 132)", "rgb(255, 159, 64)", "rgb(255, 205, 86)", "rgb(75, 192, 192)", "rgb(153, 102, 255)", "rgb(201, 203, 207)"],
+                    borderWidth: 1
+                    }]
+                };
+            var ctx = $("#myChart").get(0).getContext("2d");
+            var myNewChart = new Chart(ctx, {
+                type: 'bar',
+                data: dataT,
+                options: {
+                    responsive: true,
+                    title: { display: true, text: 'CHART.JS DEMO CHART' },
+                    legend: { position: 'bottom' },
+                    scales: {
+                    xAxes: [{ gridLines: { display: false }, display: true, scaleLabel: { display: false, labelString: '' } }],
+                    yAxes: [{ gridLines: { display: false }, display: true, scaleLabel: { display: false, labelString: '' }, ticks: { stepSize: 50, beginAtZero: true } }]
+                },
+            }
+            });
+        }
+    });
+    </script>*@
+
+@*<script type="text/javascript">
+            var result = [@Html.Raw(ViewBag.DataPoints)];
+            var dataPoints =[];
+            for(var i = 0; i < result.length; i++){
+                dataPoints.push({label:result[i].x, y:result[i].y});
+            }
+        var ctx = $("#chartContainer").get(0).getContext("2d");
+        var myNewChart = new Chart(ctx, {
+            type: 'bar',
+            data: [
+                {
+                    type: "line",
+
+                    dataPoints: dataPoints,
+                }],
+            options: {
+                responsive: true,
+                title: { display: true, text: 'CHART.JS DEMO CHART' },
+                legend: { position: 'bottom' },
+                scales: {
+                    xAxes: [{ gridLines: { display: false }, display: true, scaleLabel: { display: false, labelString: '' } }],
+                    yAxes: [{ gridLines: { display: false }, display: true, scaleLabel: { display: false, labelString: '' }, ticks: { stepSize: 50, beginAtZero: true } }]
+                },
+            }
+        });
+
+        });
+        //    window.onload = function() {
+        //        var chart = new Chart("chartContainer", {
+        //            theme: "theme2",
+        //            zoomEnabled: true,
+        //            animationEnabled: true,
+        //            title: {
+        //                text: "Line Chart with Data-Points from DataBase"
+        //            },
+        //            data: [
+        //            {
+        //                type: "line",
+
+        //                dataPoints: dataPoints,
+        //            }
+        //            ]
+        //        });
+        //        chart.render();
+        //};
+    </script>*@
+
+@*<script>
+        function drawLineChart() {
+
+            // Add a helper to format timestamp data
+            Date.prototype.formatMMDDYYYY = function () {
+                return (this.getMonth() + 1) +
+                    "/" + this.getDate() +
+                    "/" + this.getFullYear();
+            }
+
+            var jsonData = $.ajax({
+                url: "/Dashboard/DataFromDataBase",
+                dataType: 'json',
+            }).done(function (results) {
+
+                // Split timestamp and data into separate arrays
+                var labels = [], data = [];
+                results["packets"].forEach(function (packet) {
+                    labels.push(new Date(packet.timestamp).formatMMDDYYYY());
+                    data.push(parseFloat(packet.payloadString));
+                });
+
+                // Create the chart.js data structure using 'labels' and 'data'
+                var tempData = {
+                    labels: labels,
+                    datasets: [{
+                        fillColor: "rgba(151,187,205,0.2)",
+                        strokeColor: "rgba(151,187,205,1)",
+                        pointColor: "rgba(151,187,205,1)",
+                        pointStrokeColor: "#fff",
+                        pointHighlightFill: "#fff",
+                        pointHighlightStroke: "rgba(151,187,205,1)",
+                        data: data
+                    }]
+                };
+
+                // Get the context of the canvas element we want to select
+                var ctx = document.getElementById("myLineChart").getContext("2d");
+
+                // Instantiate a new chart
+                var myLineChart = new Chart(ctx).Line(tempData, {
+                    //bezierCurve: false
+                });
+            });
+        }
+
+        drawLineChart();
+    </script>*@
+
+<script>
+ 
+    var barChartLocData = {
+        labels:  @Html.Raw(ViewBag.Productname_List),
+        datasets: [{ fillColor: "lightblue", strokeColor: "blue", data:@ViewBag.MobileCount_List   }]
+    };
+    var mybarChartLoc = new Chart(document.getElementById("barChartLoc").getContext("2d")).Bar(barChartLocData);
+</script>

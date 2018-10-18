@@ -1,0 +1,147 @@
+﻿@model IEnumerable<pharm.Models.Purchase>
+
+@{
+    ViewBag.Title = "List of Purchases";
+
+    if (Session["Usertype"] != null)
+    {
+        if (Session["Usertype"].ToString() == "Admin")
+        {
+            Layout = "~/Views/Shared/_Layout.cshtml";
+        }
+        else
+        {
+            Layout = "~/Views/Shared/_LayoutStaff.cshtml";
+        }
+    }
+    else
+    {
+        Response.Write("<script>alert('You dont have permission to access this page') ; window.location.href='/Login/Login'</script>");
+    }
+}
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+
+
+@*<p>
+        @using (@Html.BeginForm("Index", "PurchaseHistory", FormMethod.Get))
+        {
+            <b>&nbsp&nbspSearch By:</b>
+
+                @Html.RadioButton("searchBy", "Purchase_ID", true)
+                <text>Purchase ID</text>
+                @Html.RadioButton("searchBy", "Supplier_Name")
+                <text>Supplier Name</text>
+
+
+                @Html.TextBox("search", null, new { @style = " height:22px; width:200px;margin: 0px 5px 0px 10px" })
+                <input type="submit" value="Search" class="btn btn-info btn-md" />
+
+                }
+    </p>*@
+
+<div class="box box-primary box-body">
+    <table id="myTable" class="table table-bordered table-hover table-condensed table-striped">
+        <thead>
+            <tr style="background-color:#3d566e; color:#ecf0f1">
+                <th>
+                    Purhase ID
+                </th>
+                <th>
+                    Supplier Name
+                </th>
+                <th>
+                    Entry Date
+                </th>
+                <th>
+                    Amount
+                </th>
+                <th>
+                    Discount(%)
+                </th>
+                <th>
+                    Discount Amount
+                </th>
+                <th>
+                    Grand Total
+                </th>
+                <th>
+                    IsPaid
+                </th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Count() == 0)
+            {
+                <tr>
+                    <td colspan="9" align="center">
+                        No records match search criteria
+                    </td>
+                </tr>
+            }
+
+            else
+            {
+
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Purchase_ID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Supplier.Supplier_Name)
+                        </td>
+                        <td>
+                            @Convert.ToString(string.Format("{0:dd-MM-yyyy}", item.Entry_Date))
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Amount)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Discount)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Discount_Amount)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Grand_Total)
+                        </td>
+                        <td class="txtCheckBox">
+                            @{
+                                if (item.IsPaid == "Paid")
+                                {
+                                    <a href="#" style="padding: 3px 10px 3px 10px; background-color:green " class="badge" readonly>Paid</a>
+                                }
+                                else
+                                {
+                                    <a href="#" style="padding: 3px 10px 3px 10px; background-color:red " class="badge" readonly>Due</a>
+                                }
+                            }
+                        </td>
+                        @*<td>
+                                @Html.DisplayFor(modelItem => item.IsPaid)
+                            </td>*@
+                        <td>
+
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Purchase_ID }, new { @class = "btn btn-primary btn-md glyphicon glyphicon-edit" })
+                            @Html.ActionLink("Details", "Details", new { id = item.Purchase_ID }, new { @class = "btn btn-info btn-md glyphicon glyphicon-info-sign" })
+
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+<div>
+    <a href="~/Report/PurchaseReportNew.aspx">View Report</a>
+    <a href="@Url.Action("ExportReport")"> Get Report in PDF</a>
+    <div style="padding:10px; border:1px solid black">
+        <div><a href="@Url.Action("Report",new {id= "PDF"})"> Get Report PDF</a></div>
+        <div><a href="@Url.Action("Report",new {id= "Excel"})"> Get Report Excel</a></div>
+        <div><a href="@Url.Action("Report",new {id= "Word"})"> Get Report Word</a></div>
+        <div><a href="@Url.Action("Report",new {id= "Image"})"> Get Report Image</a></div>
+    </div>
+</div>

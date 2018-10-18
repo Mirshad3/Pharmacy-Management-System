@@ -1,0 +1,96 @@
+﻿@model IEnumerable<pharm.Models.Expens>
+
+@{
+                /**/
+
+                ViewBag.Title = "Index";
+}
+
+
+
+<a href="@Url.Action("Create", "Expens")" class="btn btn-warning">
+    Create New
+    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+</a>
+
+
+<br />
+<table id="myTable" class=" table-striped table-bordered" style="width:100%">
+    <thead>
+        <tr style="background-color:#3d566e; color:#ecf0f1">
+            <th>
+                @Html.DisplayNameFor(model => model.Expense_Information.Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Details)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Amount)
+            </th>
+
+            <th></th>
+        </tr>
+
+        @*@foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Expense_Information.Category)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Details)
+                    </td>
+                    <td>
+                        @Convert.ToString(string.Format("{0:dd-MM-yyyy}", item.Date))
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Amount)
+                    </td>
+
+                    <td>
+
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Expense_Id }, new { @class = "btn btn-primary btn-md glyphicon glyphicon-edit" })
+
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Expense_Id }, new { @class = "btn btn-danger btn-md glyphicon glyphicon-trash", @onclick = "return confirm('Are you sure you want to delete?');" })
+
+                    </td>
+                </tr>
+            }*@
+
+
+</table>
+
+
+@section Scripts{
+    @* Load DataTable js here *@
+
+    <script>
+        $(document).ready(function () {
+            $("#myTable").DataTable({
+                "processing": true, // for show progress bar
+                "serverSide": true, // for process server side
+                "filter": false, // this is for disable filter (search box)
+                "orderMulti": false, // for disable multiple column at once
+                "ajax": {
+                    
+                     url: '/Expens/LoadData',
+                    type: "POST",
+                   
+                    dataType: "JSON",
+                    contentType: "application/json",
+                },
+                "columns": [
+                    { "data": "category_Id", "name": "category_Id", "autoWidth": true },
+                    { "data": "Details", "name": "Details", "autoWidth": true },
+                    { "data": "Date", "name": "Date", "autoWidth": true },
+                    { "data": "Amount", "name": "Amount", "autoWidth": true }
+                ]
+            });
+        });
+    </script>
+
+}
+

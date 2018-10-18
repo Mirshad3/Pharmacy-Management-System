@@ -1,0 +1,109 @@
+﻿@model IEnumerable<pharm.Models.OutStockVM>
+
+@{
+    ViewBag.Title = "Low Stock History";
+    if (Session["Usertype"] != null)
+    {
+        if (Session["Usertype"].ToString() == "Admin")
+        {
+            Layout = "~/Views/Shared/_Layout.cshtml";
+        }
+        else
+        {
+            Layout = "~/Views/Shared/_LayoutStaff.cshtml";
+        }
+    }
+    else
+    {
+        Response.Write("<script>alert('You dont have permission to access this page') ; window.location.href='/Login/Login'</script>");
+    }
+}
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css">
+
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.flash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#example').DataTable({
+
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+            ],
+            columnDefs: [
+
+                {
+                    orderable: false, targets: -1 }
+
+            ],
+
+
+    } );
+    });
+
+</script>
+@*<a href="@Url.Action("Create", "SalesHistory")" class="btn btn-warning">
+        Create New
+        <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+    </a>*@
+<br /><br />
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
+<div class="box box-primary box-body">
+    <table id="example" class="table table-bordered table-hover table-condensed table-striped">
+        <thead>
+            <tr style="background-color:#3d566e; color:#ecf0f1">
+                <th>
+                    @Html.DisplayNameFor(Model => Model.Medicine_ID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Medicine_Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BatchQuantity)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SaleQuantity)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Available)
+                </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Medicine_ID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Medicine_Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BatchQuantity)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SaleQuantity)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Available)
+                    </td>
+                    @*<td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-primary btn-md glyphicon glyphicon-edit" })
+                            @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-info btn-md glyphicon glyphicon-info-sign" })
+                            @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "btn btn-danger btn-md glyphicon glyphicon-trash", @onclick = "return confirm('Are you sure you want to delete?');" })
+                        </td>*@
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>

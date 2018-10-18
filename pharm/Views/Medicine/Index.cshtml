@@ -1,0 +1,102 @@
+﻿@model IEnumerable<pharm.Models.Medicine_Information>
+@{
+    ViewBag.Title = "List of Medicine Information";
+    if (Session["Usertype"] != null)
+    {
+        if (Session["Usertype"].ToString() == "Admin")
+        {
+            Layout = "~/Views/Shared/_Layout.cshtml";
+        }
+        else if (Session["Usertype"].ToString() == "Staff")
+        {
+            Layout = "~/Views/Shared/_LayoutStaff.cshtml";
+        }
+        else
+        {
+            Layout = "~/Views/Shared/_Main.cshtml";
+        }
+    }
+    else
+    {
+        Response.Write("<script>alert('You dont have permission to access this page') ; window.location.href='/Login/Login'</script>");
+    }
+}
+<hr width="10%">
+
+
+<a href="@Url.Action("Create", "Medicine")" class="btn btn-warning">
+    Create New
+    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+</a>
+<br /><br />
+
+<div class="box box-primary box-body">
+    <table id="myTable" class="table table-bordered table-hover table-condensed table-striped">
+        <thead>
+            <tr style="background-color:#3d566e; color:#ecf0f1">
+                <th>
+                    Medicine Name
+                </th>
+
+                <th>
+                    Generic Name
+                </th>
+                <th>
+                    Manufacturer
+                </th>
+                <th>
+                    Category
+                </th>
+                <th>
+                    Unit
+                </th>
+
+                <th>
+                    Action
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Count() == 0)
+            {
+                <tr>
+                    <td colspan="6" align="center">
+                        No records match search criteria
+                    </td>
+                </tr>
+            }
+
+            else
+            {
+                foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Medicine_Name)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Drug_Generic_name.Genric_Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Manufacturer.Manufacturer_Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Category1.Category1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Unit.unitShortName)
+                    </td>
+                    <td>
+
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-primary btn-md glyphicon glyphicon-edit" })
+                        @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-info btn-md glyphicon glyphicon-info-sign" })
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "btn btn-danger btn-md glyphicon glyphicon-trash" })
+                    </td>
+                </tr>
+                }
+            }
+        </tbody>
+
+    </table>
+</div>

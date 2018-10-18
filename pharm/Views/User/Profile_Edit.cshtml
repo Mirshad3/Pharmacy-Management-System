@@ -1,0 +1,85 @@
+﻿@model pharm.Models.User_Information
+@{
+    ViewBag.Title = "Profile_Edit";
+    
+}
+ 
+<hr width="99%">
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+<table align="center" border="1" id="datatable" class="table table-condensed table-striped table-bordered table-hover display compact">
+    <tr align="right">
+        <td>Name </td>
+        <td>@Html.TextBoxFor(model => model.Name, new { id = "name", style = "width:300px; height:30px; font-size: 16px;" })</td>
+        <td>@Html.ValidationMessageFor(model => model.Name, null, new { style = "color:red" })</td>
+    </tr>
+    <tr align="right">
+        <td>Email</td>
+        <td> @Html.TextBoxFor(model => model.Email, new { style = "width:300px; height:30px; font-size: 16px;" })</td>
+        <td>@Html.ValidationMessageFor(model => model.Email, null, new { style = "color:red" })</td>
+    </tr>
+    <tr align="right">
+        <td>Username</td>
+        <td>@Html.TextBoxFor(model => model.User_Access.Username, new { style = "width:300px; height:30px; font-size: 16px;", @readonly = "readonly" })</td>
+
+    </tr>
+
+    <tr align="right">
+        <td>Address</td>
+        <td>@Html.TextAreaFor(model => model.Address, new { style = "width:300px; height:70px; font-size: 16px;" })</td>
+        <td>@Html.ValidationMessageFor(model => model.Address, null, new { style = "color:red" })</td>
+    </tr>
+    <tr align="right">
+        <td>Contact</td>
+        <td>@Html.TextBoxFor(model => model.Contact, new { style = "width:300px; height:30px; font-size: 16px;" })</td>
+        <td>@Html.ValidationMessageFor(model => model.Contact, null, new { style = "color:red" })</td>
+    </tr>
+
+
+
+    <tr align="right">
+        <td>Password</td>
+        <td>@Html.TextBoxFor(model => model.User_Access.Password, new { style = "width:300px; height:30px; font-size: 16px;" })</td>
+        <td>@Html.ValidationMessageFor(model => model.User_Access.Password, null, new { style = "color:red" })</td>
+    </tr>
+ 
+    <tr>
+        <td></td>
+        <td></td>
+        <td>
+            &nbsp  @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-warning  btn-md" })
+            &nbsp <input type="submit" id="btnSubmit" value="Create" class="btn btn-success btn-md" />
+        </td>
+    </tr>
+</table>
+}
+ 
+<br />
+
+<script>$('#btnSubmit').on('click', function () {
+
+        if ($('#name').val() == '') {
+            isValidation = false;
+            $('#name').siblings('span.error').css('visibility', 'visible');
+        }
+        else {
+            $('#name').siblings('span.error').css('visibility', 'hidden');
+        }
+    });</script>
+
+<style>
+
+    span.error {
+        display: block;
+        visibility: hidden;
+        color: red;
+        font-size: 90%;
+    }
+</style>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

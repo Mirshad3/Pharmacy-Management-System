@@ -1,0 +1,78 @@
+﻿@model IEnumerable<pharm.Models.OutStockVM>
+@{
+    ViewBag.Title = "Out of Stock Information";
+    if (Session["Usertype"] != null)
+    {
+        if (Session["Usertype"].ToString() == "Admin")
+        {
+            Layout = "~/Views/Shared/_Layout.cshtml";
+        }
+        else
+        {
+            Layout = "~/Views/Shared/_LayoutStaff.cshtml";
+        }
+    }
+    else
+    {
+        Response.Write("<script>alert('You dont have permission to access this page') ; window.location.href='/Login/Login'</script>");
+    }
+}
+ 
+
+<hr width="10%">
+<div class="box box-primary box-body">
+
+    <table id="myTable" class="table table-bordered table-hover table-condensed table-striped">
+        <thead>
+            <tr style="background-color:#3d566e; color:#ecf0f1">
+                <th>
+                    Medicine ID
+                </th>
+                <th>
+                    Medicine Name
+                </th>
+                <th>
+                    BatchQuantity
+                </th>
+                <th>
+                    SaleQuantity
+                </th>
+                <th>
+                    Available
+                </th>
+                <th>
+                    Action
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Medicine_ID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Medicine_Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BatchQuantity)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SaleQuantity)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Available)
+                    </td>
+                    <td>
+                        @{Session["Stock_Count"] = @Model.Count(); }
+
+                        @Html.ActionLink("Details", "Details", new { id = item.Medicine_ID }, new { @class = "btn btn-info btn-md glyphicon glyphicon-info-sign" })
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+    </div>
