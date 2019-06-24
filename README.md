@@ -2,7 +2,7 @@
 
 [![Build Status](https://dev.azure.com/mirshadtgs/Pharmacy%20System/_apis/build/status/Mirshad3.Pharmacy-Management-System?branchName=master)](https://dev.azure.com/mirshadtgs/Pharmacy%20System/_build/latest?definitionId=1&branchName=master)
 
-A fully featured Clinic Management System having a well designed Database Schema made as a final project for the course "Database Systems CS203" during my 4th Semester at National University of Computer and Emerging Sciences. Its based on the 3 Tier Architecture.
+A fully featured Pharmacy Management System having a well designed Database Schema made as a final project for the course WAD during my 6th Semester at UCSC.
 
 Technologies Used:
 For Frontend: HTML, CSS, BootStrap, JavaScript
